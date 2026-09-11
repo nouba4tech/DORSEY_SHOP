@@ -16,6 +16,8 @@ def _get_database_url():
       serverless en lecture seule, ex. Vercel).
     """
     db_url = os.environ.get('DATABASE_URL')
+    if os.environ.get('DEBUG_DB_PATH'):
+        raise RuntimeError(f"DEBUG env DATABASE_URL={db_url!r} cwd={os.getcwd()!r} env_has_dotenv_file={os.path.exists('.env')!r}")
     if db_url:
         return db_url
     base_dir = os.path.abspath(os.path.dirname(__file__))
