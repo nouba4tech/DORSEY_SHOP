@@ -32,15 +32,20 @@ def _get_database_url():
         except OSError:
             return False
 
-    if not _writable(instance_path):
+    writable = _writable(instance_path)
+    if not writable:
         # Système de fichiers en lecture seule (ex. Vercel) : seul /tmp est
         # inscriptible. Les données ne persisteront pas entre les invocations.
         import tempfile
         instance_path = os.path.join(tempfile.gettempdir(), 'dorsey-instance')
         os.makedirs(instance_path, exist_ok=True)
-    import sys
-    print(f"[dorsey-shop] SQLite instance_path resolved to: {instance_path}", file=sys.stderr)
     sqlite_path = os.path.join(instance_path, 'dev.db')
+    if os.environ.get('DEBUG_DB_PATH'):
+        raise RuntimeError(
+            f"DEBUG base_dir={base_dir} first_probe_writable={writable} "
+            f"final_instance_path={instance_path} sqlite_path={sqlite_path} "
+            f"path_exists={os.path.exists(instance_path)}"
+        )
     return 'sqlite:///' + sqlite_path.replace('\\', '/')
 
 class Config:
