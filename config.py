@@ -20,9 +20,19 @@ def _get_database_url():
         return db_url
     base_dir = os.path.abspath(os.path.dirname(__file__))
     instance_path = os.path.join(base_dir, 'instance')
-    try:
-        os.makedirs(instance_path, exist_ok=True)
-    except OSError:
+
+    def _writable(path):
+        try:
+            os.makedirs(path, exist_ok=True)
+            probe = os.path.join(path, '.write_test')
+            with open(probe, 'w') as f:
+                f.write('x')
+            os.remove(probe)
+            return True
+        except OSError:
+            return False
+
+    if not _writable(instance_path):
         # Système de fichiers en lecture seule (ex. Vercel) : seul /tmp est
         # inscriptible. Les données ne persisteront pas entre les invocations.
         import tempfile
