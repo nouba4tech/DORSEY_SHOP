@@ -12,13 +12,17 @@ def _get_database_url():
     """
     Retourne l'URL de base de données.
     - Priorité à DATABASE_URL si définie.
-    - Sinon, fallback SQLite dans instance/dev.db.
+    - Sinon, fallback SQLite dans instance/dev.db (ou /tmp en environnement
+      serverless en lecture seule, ex. Vercel).
     """
     db_url = os.environ.get('DATABASE_URL')
     if db_url:
         return db_url
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-    instance_path = os.path.join(base_dir, 'instance')
+    if os.environ.get('VERCEL'):
+        instance_path = '/tmp/instance'
+    else:
+        base_dir = os.path.abspath(os.path.dirname(__file__))
+        instance_path = os.path.join(base_dir, 'instance')
     os.makedirs(instance_path, exist_ok=True)
     sqlite_path = os.path.join(instance_path, 'dev.db')
     return 'sqlite:///' + sqlite_path.replace('\\', '/')
