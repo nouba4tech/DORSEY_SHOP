@@ -125,6 +125,38 @@
     text-decoration: line-through;
   }
 
+  .product-discount {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #dc2626;
+    background: #fee2e2;
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+  }
+
+  .product-swatches {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.7rem;
+  }
+
+  .product-swatches .swatch-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 1px #e2e8f0;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .product-swatches .swatch-btn.active {
+    border-color: #0f172a;
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 3px #0f172a;
+  }
+
   .product-stock {
     display: inline-block;
     border-radius: 999px;
@@ -243,7 +275,17 @@
         </a>
 
         <div class="product-price-row">
-          <span class="product-price-now">{{ _('Prix sur commande') }}</span>
+          {% if product.is_on_sale and product.sale_price %}
+          <span class="product-price-now">{{ format_price(product.sale_price) }}</span>
+          {% if product.compare_price %}
+          <span class="product-price-before">{{ format_price(product.compare_price) }}</span>
+          {% if product.get_discount_percentage() %}
+          <span class="product-discount">-{{ product.get_discount_percentage()|int }}%</span>
+          {% endif %}
+          {% endif %}
+          {% else %}
+          <span class="product-price-now">{{ format_price(product.price) }}</span>
+          {% endif %}
         </div>
 
         {% if stock_state == 'out_of_stock' %}
@@ -255,6 +297,16 @@
         {% endif %}
 
         <p class="product-description">{{ product.description or product.short_description or t('Article disponible dans notre boutique.') }}</p>
+
+        {% if colors %}
+        <div class="product-swatches" role="group" aria-label="{{ _('Couleur') }}">
+          {% for c in colors %}
+          <button type="button" class="swatch-btn{{ ' active' if loop.first else '' }}"
+            style="background: {{ color_hex(c) }};" title="{{ c }}" data-color="{{ c }}"
+            onclick="document.querySelectorAll('.swatch-btn').forEach(function(b){b.classList.remove('active');}); this.classList.add('active'); document.getElementById('color').value = this.dataset.color;"></button>
+          {% endfor %}
+        </div>
+        {% endif %}
 
         <form method="post" action="{{ url_for('cart.add_to_cart', product_id=product.id) }}">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -275,7 +327,7 @@
               <select id="color" class="form-select" name="color">
                 <option value="">{{ _('Aucune') }}</option>
                 {% for c in colors %}
-                <option value="{{ c }}">{{ c }}</option>
+                <option value="{{ c }}"{{ ' selected' if loop.first else '' }}>{{ c }}</option>
                 {% endfor %}
               </select>
             </div>

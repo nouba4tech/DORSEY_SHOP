@@ -63,6 +63,17 @@ def create_app(config_class='config.Config'):
             'ngettext': dummy_ngettext,
         })
     
+    # Filtre pour parser les champs JSON stockés en texte (colors, sizes, images)
+    import json as _json
+    def _fromjson(value):
+        if not value:
+            return []
+        try:
+            return _json.loads(value)
+        except (TypeError, ValueError):
+            return []
+    app.jinja_env.filters['fromjson'] = _fromjson
+
     # Configurer Flask-Login
     login_manager.login_view = 'auth.login'
     login_manager.login_message = 'Veuillez vous connecter pour accéder à cette page.'
@@ -109,6 +120,20 @@ def create_app(config_class='config.Config'):
             """Formater un prix en FCFA (XAF)"""
             amount = float(price or 0)
             return f"{amount:,.0f}".replace(',', ' ') + " FCFA"
+
+        COLOR_HEX = {
+            'noir': '#111111', 'blanc': '#ffffff', 'marron': '#7b4a2b',
+            'bleu': '#2563eb', 'bleu marine': '#1e3a5f', 'rouge': '#dc2626',
+            'vert': '#16a34a', 'kaki': '#7c7a4a', 'jaune': '#eab308',
+            'gris': '#9ca3af', 'beige': '#e3d5b8', 'rose': '#f472b6',
+            'orange': '#f97316', 'multicolore': 'conic-gradient(from 90deg, #dc2626, #eab308, #16a34a, #2563eb, #f472b6, #dc2626)',
+            'anthracite': '#3f3f46', 'chine': '#a8a29e', 'camel': '#c19a6b',
+            'doré': '#c9a54b',
+        }
+
+        def color_hex(name):
+            """Retourner un code couleur (ou dégradé) pour une pastille produit"""
+            return COLOR_HEX.get((name or '').strip().lower(), '#cbd5e1')
 
         def order_status_label(status):
             status = (status or '').lower()
@@ -195,6 +220,7 @@ def create_app(config_class='config.Config'):
         
         return dict(
             format_price=format_price,
+            color_hex=color_hex,
             order_status_label=order_status_label,
             payment_status_label=payment_status_label,
             order_status_badge=order_status_badge,

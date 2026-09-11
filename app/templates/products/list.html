@@ -226,6 +226,28 @@
     min-height: 2.4em;
   }
 
+  .catalog-swatches {
+    display: flex;
+    align-items: center;
+    gap: 0.32rem;
+    margin: 0.1rem 0 0.15rem;
+  }
+
+  .catalog-swatches .swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(15, 23, 42, 0.15);
+    box-shadow: 0 0 0 1px #ffffff;
+    display: inline-block;
+  }
+
+  .catalog-swatches .swatch-more {
+    font-size: 0.72rem;
+    color: #64748b;
+    font-weight: 600;
+  }
+
   .catalog-location {
     display: inline-flex;
     align-items: center;
@@ -503,14 +525,25 @@
             <a href="{{ url_for('products.product_detail', product_id=p.id) }}">{{ p.name }}</a>
           </h3>
           <p class="catalog-desc">{{ product_desc[:82] }}{{ '...' if product_desc|length > 82 else '' }}</p>
-          <a class="catalog-location" href="https://www.google.com/maps/place/Chagoua,+N'Djamena,+Tchad/@12.0899998,15.09,15z/data=!3m1!4b1!4m6!3m5!1s0x1119617297966e6f:0x40a37cc0c623c7f6!8m2!3d12.09!4d15.09!16s%2Fg%2F1vb9g2c1?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
-             target="_blank" rel="noopener noreferrer">
-            {{ p.location_city or shop_city }}, {{ p.location_country or shop_country }}
-          </a>
+
+          {% set p_colors = p.colors | fromjson %}
+          {% if p_colors %}
+          <div class="catalog-swatches">
+            {% for color in p_colors[:5] %}
+            <span class="swatch" style="background: {{ color_hex(color) }};" title="{{ color }}"></span>
+            {% endfor %}
+            {% if p_colors|length > 5 %}<span class="swatch-more">+{{ p_colors|length - 5 }}</span>{% endif %}
+          </div>
+          {% endif %}
 
           <div class="catalog-meta">
             <div class="catalog-price">
-              <span class="catalog-price-now">{{ _('Prix sur commande') }}</span>
+              {% if p.is_on_sale and p.sale_price %}
+              <span class="catalog-price-now">{{ format_price(p.sale_price) }}</span>
+              {% if p.compare_price %}<span class="catalog-price-before">{{ format_price(p.compare_price) }}</span>{% endif %}
+              {% else %}
+              <span class="catalog-price-now">{{ format_price(p.price) }}</span>
+              {% endif %}
             </div>
             {% if stock_state == 'out_of_stock' %}
             <span class="catalog-stock out">{{ _('Rupture') }}</span>
