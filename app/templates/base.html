@@ -605,11 +605,45 @@
         {% block content %}{% endblock %}
     </main>
 
+    <div class="footer-trust-strip">
+        <div class="container footer-trust-grid">
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="1" y="7" width="14" height="10" rx="1.2"></rect>
+                    <path d="M15 10h3.5L22 13.5V17h-7z"></path>
+                    <circle cx="6" cy="19" r="1.8"></circle>
+                    <circle cx="17.5" cy="19" r="1.8"></circle>
+                </svg>
+                <span>{{ _('Livraison à %(city)s', city=shop_city) }}</span>
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5z"></path>
+                    <path d="M9 12l2 2 4-4"></path>
+                </svg>
+                <span>{{ _('Paiement sécurisé') }}</span>
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20.5 12.6 12.9 20a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1 0-2.8L10.6 2.7A2 2 0 0 1 12 2.1L20 2a1 1 0 0 1 1 1l-.1 8a2 2 0 0 1-.4 1.6Z"></path>
+                    <circle cx="15.5" cy="6.5" r="1.4"></circle>
+                </svg>
+                <span>{{ _('Meilleurs prix') }}</span>
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.6 8.6 0 0 1-3.6-.8L3 20l1-5.2a8.4 8.4 0 0 1-.9-3.8A8.4 8.4 0 0 1 12 2.6a8.4 8.4 0 0 1 9 8.9Z"></path>
+                </svg>
+                <span>{{ _('Support WhatsApp') }}</span>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="footer-deco footer-deco-left"></div>
         <div class="footer-deco footer-deco-right"></div>
         <div class="container footer-shell">
-            <div class="footer-grid">
+            <div class="footer-grid footer-grid-wide">
                 <div class="footer-col brand-col">
                     <a href="{{ url_for('main.index') }}" class="footer-logo-wrap"
                         aria-label="{{ _('Accueil Dorsey Shop') }}">
@@ -666,72 +700,112 @@
                 </div>
 
                 <div class="footer-col">
-                    <h3>{{ _('Liens utiles') }}</h3>
+                    <h3>{{ _('Mieux nous connaître') }}</h3>
                     <ul class="footer-list">
                         <li><a href="{{ url_for('main.about') }}">{{ _('Qui sommes-nous ?') }}</a></li>
-                        <li><a href="{{ url_for('main.help_center') }}">{{ _('Aide') }}</a></li>
-                        <li><a href="{{ url_for('main.contact') }}">{{ _('Contacts') }}</a></li>
-                        <li><a href="{{ url_for('main.track_order') }}">{{ _('Commande') }}</a></li>
+                        <li><a href="{{ url_for('products.list_products') }}">{{ _('Nos produits') }}</a></li>
                         {% if current_user.is_authenticated %}
                         <li><a href="{{ url_for('auth.profile') }}">{{ _('Mon compte') }}</a></li>
                         {% else %}
                         <li><a href="{{ url_for('auth.login') }}">{{ _('Connexion') }}</a></li>
                         <li><a href="{{ url_for('auth.register') }}">{{ _('Inscription') }}</a></li>
                         {% endif %}
-                        <li><a href="{{ url_for('products.list_products') }}">{{ _('Plan du site') }}</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
-                    <h3>{{ _('Nos services') }}</h3>
+                    <h3>{{ _('Aide') }}</h3>
                     <ul class="footer-list">
-                        <li>{{ _('Présence sur notre site & application') }}</li>
-                        <li>{{ _('Promotion des produits/services en bannière web et mobile') }}</li>
-                        <li>{{ _('Mise en avant de vos produits à travers nos réseaux sociaux') }}</li>
-                        <li>{{ _('Génération et vente des QR codes dédiés') }}</li>
-                        <li>{{ _('Gestion des médias sociaux') }}</li>
+                        <li><a href="{{ url_for('main.help_center') }}">{{ _("Besoin d'aide ?") }}</a></li>
+                        <li><a href="{{ url_for('main.contact') }}">{{ _('Formulaire de contact') }}</a></li>
+                        <li><a href="https://wa.me/23568070958" target="_blank" rel="noopener noreferrer">{{ _('Par WhatsApp') }}</a></li>
+                        <li><a href="{{ url_for('main.track_order') }}">{{ _('Suivre ma commande') }}</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-col newsletter-col" id="newsletter">
-                    <h3>{{ _('Newsletter') }}</h3>
-                    <form class="newsletter-form" method="post" action="{{ url_for('main.subscribe_newsletter') }}"
-                        onsubmit="submitNewsletter(event)">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="source" value="footer">
-                        <label for="newsletter-email" class="sr-only">{{ _('Email') }}</label>
-                        <input id="newsletter-email" name="email" type="email"
-                            placeholder="{{ _('Saisir votre mail') }}" aria-label="{{ _('Email newsletter') }}"
-                            autocomplete="email" inputmode="email" required>
-                        <button type="submit">{{ _('Soumettre') }}</button>
-                    </form>
-                    {% set newsletter_status = request.args.get('newsletter') %}
-                    <p id="newsletter-feedback"
-                        class="newsletter-feedback{% if newsletter_status %} is-visible is-{{ newsletter_status }}{% endif %}"
-                        role="status" aria-live="polite">
-                        {% if newsletter_status == 'success' %}
-                        {{ _('Merci ! Votre inscription est confirmée.') }}
-                        {% elif newsletter_status == 'exists' %}
-                        {{ _('Vous êtes déjà inscrit à la newsletter.') }}
-                        {% elif newsletter_status == 'invalid' %}
-                        {{ _('Adresse email invalide.') }}
-                        {% elif newsletter_status == 'error' %}
-                        {{ _('Une erreur est survenue. Réessayez plus tard.') }}
-                        {% endif %}
-                    </p>
+                <div class="footer-col">
+                    <h3>{{ _('Informations légales') }}</h3>
+                    <ul class="footer-list">
+                        <li><a href="#">{{ _('Conditions Générales de Vente') }}</a></li>
+                        <li><a href="#">{{ _("Conditions Générales d'Utilisation") }}</a></li>
+                        <li><a href="#">{{ _('Mentions légales') }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-col-stack">
+                    <div class="footer-substack">
+                        <h3>{{ _('Livraison') }}</h3>
+                        <p class="footer-delivery-info">{{ shop_city }}, {{ shop_country }}</p>
+                    </div>
+                    <div class="footer-substack">
+                        <h3>{{ _('Modes de paiement') }}</h3>
+                        <div class="footer-payments">
+                            <span class="pay-badge" title="{{ _('Carte bancaire (Stripe)') }}">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>
+                                {{ _('Carte') }}
+                            </span>
+                            <span class="pay-badge" title="{{ _('Paiement à la livraison') }}">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 12h6M12 9v6"></path></svg>
+                                {{ _('À la livraison') }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col footer-col-stack" id="newsletter">
+                    <div class="footer-substack">
+                        <h3>{{ _('Langue') }}</h3>
+                        <div class="footer-lang-list">
+                            {% for code, name in languages.items() %}
+                            <a href="{{ url_for('main.set_language', lang=code) }}"
+                                class="{{ 'active' if code == current_lang else '' }}">{{ lang_flags[code] }} {{ name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="footer-substack">
+                        <h3>{{ _('Newsletter') }}</h3>
+                        <form class="newsletter-form" method="post" action="{{ url_for('main.subscribe_newsletter') }}"
+                            onsubmit="submitNewsletter(event)">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="source" value="footer">
+                            <label for="newsletter-email" class="sr-only">{{ _('Email') }}</label>
+                            <input id="newsletter-email" name="email" type="email"
+                                placeholder="{{ _('Saisir votre mail') }}" aria-label="{{ _('Email newsletter') }}"
+                                autocomplete="email" inputmode="email" required>
+                            <button type="submit">{{ _('Soumettre') }}</button>
+                        </form>
+                        {% set newsletter_status = request.args.get('newsletter') %}
+                        <p id="newsletter-feedback"
+                            class="newsletter-feedback{% if newsletter_status %} is-visible is-{{ newsletter_status }}{% endif %}"
+                            role="status" aria-live="polite">
+                            {% if newsletter_status == 'success' %}
+                            {{ _('Merci ! Votre inscription est confirmée.') }}
+                            {% elif newsletter_status == 'exists' %}
+                            {{ _('Vous êtes déjà inscrit à la newsletter.') }}
+                            {% elif newsletter_status == 'invalid' %}
+                            {{ _('Adresse email invalide.') }}
+                            {% elif newsletter_status == 'error' %}
+                            {{ _('Une erreur est survenue. Réessayez plus tard.') }}
+                            {% endif %}
+                        </p>
+                    </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <div class="footer-bottom-links">
-                    <a href="#">{{ _('Conditions Générales de Vente') }}</a>
-                    <a href="#">{{ _("Conditions Générales d'Utilisation") }}</a>
-                    <a href="#">{{ _('Mentions légales') }}</a>
-                </div>
                 <p class="footer-copyright">&copy; 2026 Dorsey Shop</p>
             </div>
         </div>
     </footer>
+
+    <a class="whatsapp-fab" href="https://wa.me/23568070958" target="_blank" rel="noopener noreferrer"
+        aria-label="{{ _('Discuter sur WhatsApp') }}" title="{{ _('Discuter sur WhatsApp') }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 12a8 8 0 1 1-14.2-4.9A8 8 0 0 1 20 12Z" />
+            <path d="M6.5 20.2 8 16.8" />
+            <path d="M10 9.5c.3-.5.7-.5 1-.2l.8 1c.3.3.3.7 0 1l-.4.5c.6 1 1.2 1.6 2.2 2.1l.4-.3c.4-.3.8-.3 1.1 0l1 .8c.3.3.3.8-.2 1.1-.8.6-1.9.7-3.1.2-2.1-.9-4.1-2.9-5-5-.5-1.2-.4-2.3.2-3.2Z" />
+        </svg>
+    </a>
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script>
