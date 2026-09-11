@@ -38,6 +38,8 @@ def _get_database_url():
         import tempfile
         instance_path = os.path.join(tempfile.gettempdir(), 'dorsey-instance')
         os.makedirs(instance_path, exist_ok=True)
+    import sys
+    print(f"[dorsey-shop] SQLite instance_path resolved to: {instance_path}", file=sys.stderr)
     sqlite_path = os.path.join(instance_path, 'dev.db')
     return 'sqlite:///' + sqlite_path.replace('\\', '/')
 
