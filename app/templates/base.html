@@ -7,7 +7,7 @@
     <title>{% block title %}DORSEY-SHOP{% endblock %}</title>
     <meta name="description" content="{{ _('DORSEY-SHOP - Mode et accessoires au Tchad') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo/Dorsey-Boutique.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20260911-footer-v3-theme">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20260911-header-v1">
     <script>
         // Check theme before page load to avoid flash
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -383,9 +383,44 @@
 <body>
     {% set endpoint = request.endpoint or '' %}
 
+    <div class="header-info-bar">
+        <div class="container header-info-row">
+            <div class="header-info-items">
+                <span class="info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="1" y="7" width="14" height="10" rx="1.2"></rect>
+                        <path d="M15 10h3.5L22 13.5V17h-7z"></path>
+                        <circle cx="6" cy="19" r="1.8"></circle>
+                        <circle cx="17.5" cy="19" r="1.8"></circle>
+                    </svg>
+                    {{ _('Livraison à %(city)s', city=shop_city) }}
+                </span>
+                <span class="info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.6 8.6 0 0 1-3.6-.8L3 20l1-5.2a8.4 8.4 0 0 1-.9-3.8A8.4 8.4 0 0 1 12 2.6a8.4 8.4 0 0 1 9 8.9Z"></path>
+                    </svg>
+                    {{ _('Support WhatsApp') }}
+                </span>
+                <span class="info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.5 12.6 12.9 20a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1 0-2.8L10.6 2.7A2 2 0 0 1 12 2.1L20 2a1 1 0 0 1 1 1l-.1 8a2 2 0 0 1-.4 1.6Z"></path>
+                        <circle cx="15.5" cy="6.5" r="1.4"></circle>
+                    </svg>
+                    {{ _('Meilleurs prix') }}
+                </span>
+                <span class="info-item info-item-hide-sm">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 6 9 17l-5-5"></path>
+                    </svg>
+                    {{ _('Paiement sécurisé') }}
+                </span>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-container">
+            <div class="navbar-main-row">
                 <div class="navbar-left">
                     <button class="left-nav-toggle" id="left-nav-toggle" type="button"
                         aria-label="{{ _('Ouvrir le menu rapide') }}" aria-controls="left-nav" aria-expanded="false"
@@ -404,24 +439,33 @@
                     </a>
                 </div>
 
-                <ul class="navbar-nav" role="list">
-                    <li><a href="{{ url_for('main.index') }}"
-                            class="nav-link {% if endpoint == 'main.index' %}active{% endif %}">{{ _('Accueil') }}</a>
-                    </li>
-                    <li><a href="{{ url_for('products.list_products') }}"
-                            class="nav-link {% if endpoint.startswith('products.') %}active{% endif %}">{{
-                            _('Catalogue') }}</a></li>
-                    <li><a href="{{ url_for('cart.view_cart') }}"
-                            class="nav-link {% if endpoint.startswith('cart.') %}active{% endif %}">{{ _('Panier') }}{%
-                            if cart_count > 0 %} ({{ cart_count }}){% endif %}</a></li>
-                    <li><a href="{{ url_for('main.track_order') }}"
-                            class="nav-link {% if endpoint == 'main.track_order' %}active{% endif %}">{{ _('Commande')
-                            }}</a></li>
-
-
-                </ul>
+                <form class="navbar-search" method="get" action="{{ url_for('products.list_products') }}"
+                    role="search">
+                    <span class="navbar-search-label">{{ _('Mode & accessoires au Tchad') }}</span>
+                    <div class="navbar-search-box">
+                        <label for="navbar-search-input" class="sr-only">{{ _('Rechercher') }}</label>
+                        <input id="navbar-search-input" type="text" name="q"
+                            value="{{ request.args.get('q', '') }}"
+                            placeholder="{{ _('Rechercher un article...') }}">
+                        <button type="submit" aria-label="{{ _('Rechercher') }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="11" cy="11" r="7"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
 
                 <div class="navbar-actions">
+                    <a href="{{ url_for('cart.view_cart') }}" class="nav-icon-btn" aria-label="{{ _('Panier') }}">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M6 6h15l-1.5 9h-12z"></path>
+                            <path d="M6 6 5 2H2"></path>
+                            <circle cx="9.5" cy="20" r="1.4"></circle>
+                            <circle cx="17.5" cy="20" r="1.4"></circle>
+                        </svg>
+                        {% if cart_count > 0 %}<span class="nav-icon-badge">{{ cart_count }}</span>{% endif %}
+                    </a>
                     {% if current_user.is_authenticated %}
                     <a href="{{ url_for('auth.logout') }}" class="btn btn-outline nav-btn">{{ _('Déconnexion') }}</a>
                     <div class="nav-account">
@@ -457,9 +501,6 @@
                         </details>
                     </div>
                     {% else %}
-                    <a href="{{ url_for('main.about') }}" class="btn btn-outline nav-btn">{{ _('A propos') }}</a>
-                    <a href="{{ url_for('main.contact') }}" class="btn btn-outline nav-btn">{{ _('Contact') }}</a>
-                    <a href="{{ url_for('main.help_center') }}" class="btn btn-outline nav-btn">{{ _('Aide') }}</a>
                     <div class="nav-account">
                         <button type="button" class="nav-account-toggle" id="account-toggle"
                             aria-label="{{ _('Mon compte') }}" aria-expanded="false" aria-controls="account-menu">
@@ -511,6 +552,20 @@
                 <button class="mobile-menu-toggle" aria-label="{{ _('Ouvrir le menu') }}" onclick="toggleSidebar()">
                     ☰
                 </button>
+            </div>
+
+            <div class="navbar-category-row">
+                <ul class="category-nav-list" role="list">
+                    <li><a href="{{ url_for('main.index') }}" class="{% if endpoint == 'main.index' %}active{% endif %}">{{ _('Accueil') }}</a></li>
+                    <li><a href="{{ url_for('products.list_products', category='hommes') }}">{{ _('Hommes') }}</a></li>
+                    <li><a href="{{ url_for('products.list_products', category='femmes') }}">{{ _('Femmes') }}</a></li>
+                    <li><a href="{{ url_for('products.list_products', category='chaussures') }}">{{ _('Chaussures') }}</a></li>
+                    <li><a href="{{ url_for('products.list_products', category='chapeaux') }}">{{ _('Chapeaux') }}</a></li>
+                    <li><a href="{{ url_for('products.list_products', category='accessoires') }}">{{ _('Accessoires') }}</a></li>
+                    <li><a href="{{ url_for('products.list_products') }}" class="{% if endpoint.startswith('products.') and not request.args.get('category') %}active{% endif %}">{{ _('Tout le catalogue') }}</a></li>
+                    <li><a href="{{ url_for('main.track_order') }}" class="{% if endpoint == 'main.track_order' %}active{% endif %}">{{ _('Suivre ma commande') }}</a></li>
+                </ul>
+                <a class="promo-pill" href="{{ url_for('products.list_products', category='promotions') }}">{{ _('Promotions') }}</a>
             </div>
         </div>
     </nav>
