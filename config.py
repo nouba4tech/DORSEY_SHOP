@@ -16,8 +16,6 @@ def _get_database_url():
       serverless en lecture seule, ex. Vercel).
     """
     db_url = os.environ.get('DATABASE_URL')
-    if os.environ.get('DEBUG_DB_PATH'):
-        raise RuntimeError(f"DEBUG env DATABASE_URL={db_url!r} cwd={os.getcwd()!r} env_has_dotenv_file={os.path.exists('.env')!r}")
     if db_url:
         return db_url
     base_dir = os.path.abspath(os.path.dirname(__file__))
@@ -34,20 +32,13 @@ def _get_database_url():
         except OSError:
             return False
 
-    writable = _writable(instance_path)
-    if not writable:
+    if not _writable(instance_path):
         # Système de fichiers en lecture seule (ex. Vercel) : seul /tmp est
         # inscriptible. Les données ne persisteront pas entre les invocations.
         import tempfile
         instance_path = os.path.join(tempfile.gettempdir(), 'dorsey-instance')
         os.makedirs(instance_path, exist_ok=True)
     sqlite_path = os.path.join(instance_path, 'dev.db')
-    if os.environ.get('DEBUG_DB_PATH'):
-        raise RuntimeError(
-            f"DEBUG base_dir={base_dir} first_probe_writable={writable} "
-            f"final_instance_path={instance_path} sqlite_path={sqlite_path} "
-            f"path_exists={os.path.exists(instance_path)}"
-        )
     return 'sqlite:///' + sqlite_path.replace('\\', '/')
 
 class Config:

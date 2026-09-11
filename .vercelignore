@@ -1,0 +1,30 @@
+# Secrets / local-only config (never bundle in the deployment)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Environment
+.venv
+venv/
+env/
+
+# Flask instance data / local databases
+instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads (not needed in the deployed bundle)
+app/static/images/uploads/
+
+# Misc project scratch files not needed at runtime
+tests/
+*.log
+data_dump.json
+rename_log.txt
+products_list.txt
+ceintures_list.txt
+tmp_product_preview.jpg
