@@ -21,12 +21,12 @@ def create_app(config_class='config.Config'):
     
     # S'assurer que le dossier d'upload existe (best-effort : le système de
     # fichiers est en lecture seule sur les plateformes serverless comme Vercel)
-    if os.environ.get('VERCEL'):
-        app.config['UPLOAD_FOLDER'] = os.path.join('/tmp', 'uploads')
     try:
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     except OSError:
-        pass
+        import tempfile
+        app.config['UPLOAD_FOLDER'] = os.path.join(tempfile.gettempdir(), 'uploads')
+        os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     
     # Initialiser les extensions avec l'application
     db.init_app(app)

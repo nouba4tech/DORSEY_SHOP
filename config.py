@@ -18,12 +18,16 @@ def _get_database_url():
     db_url = os.environ.get('DATABASE_URL')
     if db_url:
         return db_url
-    if os.environ.get('VERCEL'):
-        instance_path = '/tmp/instance'
-    else:
-        base_dir = os.path.abspath(os.path.dirname(__file__))
-        instance_path = os.path.join(base_dir, 'instance')
-    os.makedirs(instance_path, exist_ok=True)
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    instance_path = os.path.join(base_dir, 'instance')
+    try:
+        os.makedirs(instance_path, exist_ok=True)
+    except OSError:
+        # Système de fichiers en lecture seule (ex. Vercel) : seul /tmp est
+        # inscriptible. Les données ne persisteront pas entre les invocations.
+        import tempfile
+        instance_path = os.path.join(tempfile.gettempdir(), 'dorsey-instance')
+        os.makedirs(instance_path, exist_ok=True)
     sqlite_path = os.path.join(instance_path, 'dev.db')
     return 'sqlite:///' + sqlite_path.replace('\\', '/')
 
