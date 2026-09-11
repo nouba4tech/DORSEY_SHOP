@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Connexion') }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .login-frame .frame-header .frame-title {
+    color: #ffffff !important;
+  }
+
+  .login-frame .frame-header .frame-subtitle {
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  .login-frame .form-row {
+    grid-template-columns: 0.85fr 1.75fr;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .login-frame .form-input {
+    width: 100%;
+    min-height: 42px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.96rem;
+    border-radius: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .login-frame .form-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-10">
+  <div class="login-frame">
+    <div class="frame-header">
+      <h2 class="frame-title"> {{ _('Connexion') }}</h2>
+      <p class="frame-subtitle">{{ _('Accédez à votre espace DORSEY') }}</p>
+    </div>
+    
+    <form method="post" action="{{ url_for('auth.login_submit') }}" class="frame-form">
+      {{ form.csrf_token }}
+      
+      <div class="form-row">
+        <label class="form-label"> {{ _('Email') }}</label>
+        {{ form.email(class_='form-input', placeholder='votre@email.com') }}
+      </div>
+      
+      <div class="form-row">
+        <label class="form-label"> {{ _('Mot de passe') }}</label>
+        {{ form.password(class_='form-input', placeholder='••••••••') }}
+      </div>
+      
+      <div class="form-options">
+        <label class="checkbox-label">
+          {{ form.remember_me() }} {{ _('Se souvenir') }}
+        </label>
+        <a href="{{ url_for('auth.register') }}" class="link-primary">{{ _('Créer un compte') }}</a>
+      </div>
+      
+      <button type="submit" class="btn btn-primary w-full">
+        {{ _('Se connecter') }}
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

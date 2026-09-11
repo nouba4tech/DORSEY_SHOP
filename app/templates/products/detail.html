@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} - DORSEY-SHOP{% endblock %}
+
+{% block extra_css %}
+<style>
+  .product-detail-page {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .product-detail-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-detail-top h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  }
+
+  .product-detail-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1rem;
+  }
+
+  .product-media-card,
+  .product-info-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 0.9rem;
+  }
+
+  .product-main-media {
+    width: 100%;
+    min-height: 420px;
+    border-radius: 12px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .product-main-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .product-main-fallback {
+    font-size: 5rem;
+    line-height: 1;
+  }
+
+  .product-thumbs {
+    margin-top: 0.7rem;
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+
+  .product-thumbs img {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+  }
+
+  .product-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .product-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0 0 0.6rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .product-location::before {
+    content: "";
+    width: 12px;
+    height: 19px;
+    display: inline-block;
+    background: no-repeat center/contain url("data:image/svg+xml,%3Csvg width='15' height='24' viewBox='0 0 15 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%236b7c8c' d='M7.5 0C3.357 0 0 3.286 0 7.344c0 4.958 6.708 12.489 7.049 12.866.252.28.651.28.903 0 .341-.377 7.048-7.908 7.048-12.866C15 3.286 11.643 0 7.5 0Zm0 11.055c-2.077 0-3.76-1.659-3.76-3.711 0-2.053 1.683-3.712 3.76-3.712 2.077 0 3.761 1.659 3.761 3.712 0 2.052-1.684 3.711-3.761 3.711Z'/%3E%3C/svg%3E");
+  }
+
+  /* Dark mode overrides */
+  [data-theme="dark"] .product-location {
+    color: #ffffff;
+  }
+
+  [data-theme="dark"] .product-location::before {
+    filter: brightness(1.6);
+  }
+
+  .product-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .product-price-now {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .product-price-before {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    text-decoration: line-through;
+  }
+
+  .product-stock {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.22rem 0.55rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.65rem;
+  }
+
+  .product-stock.in {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .product-stock.low {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .product-stock.out {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  .product-description {
+    color: #475569;
+    margin-bottom: 0.85rem;
+  }
+
+  .product-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .product-form-grid .form-group {
+    margin-bottom: 0;
+  }
+
+  .product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+  }
+
+  .product-actions .btn {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .product-extra {
+    margin-top: 0.75rem;
+    color: #64748b;
+    font-size: 0.84rem;
+  }
+
+  @media (max-width: 980px) {
+    .product-detail-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .product-main-media {
+      min-height: 320px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .product-form-grid,
+    .product-actions {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% set stock_state = product.get_stock_status() %}
+<section class="product-detail-page">
+  <div class="container">
+    <div class="product-detail-top">
+      <h1>{{ product.name }}</h1>
+      <a class="btn btn-secondary" href="{{ url_for('products.list_products') }}">{{ _('Retour au catalogue') }}</a>
+    </div>
+
+    <div class="product-detail-layout">
+      <article class="product-media-card">
+        <div class="product-main-media">
+          {% if product.main_image and ('.' in product.main_image) %}
+          <img src="{{ url_for('static', filename='images/products/' ~ product.main_image) }}" alt="{{ product.name }}">
+          {% else %}
+          <div class="product-main-fallback">{{ product.main_image or '🛍️' }}</div>
+          {% endif %}
+        </div>
+
+        {% if images %}
+        <div class="product-thumbs">
+          {% for img in images %}
+          {% if img and ('.' in img) %}
+          <img src="{{ url_for('static', filename='images/products/' ~ img) }}" alt="{{ product.name }} {{ _('image') }} {{ loop.index }}">
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </article>
+
+      <article class="product-info-card">
+        <div class="product-meta">
+          <span class="badge">SKU: {{ product.sku }}</span>
+          <span class="badge">{{ product.category.name }}</span>
+          {% if product.brand %}<span class="badge">{{ product.brand }}</span>{% endif %}
+        </div>
+        <a class="product-location" href="https://www.google.com/maps/place/Chagoua,+N'Djamena,+Tchad/@12.0899998,15.09,15z/data=!3m1!4b1!4m6!3m5!1s0x1119617297966e6f:0x40a37cc0c623c7f6!8m2!3d12.09!4d15.09!16s%2Fg%2F1vb9g2c1?entry=ttu&g_ep=EgoyMDI2MDIyNC4wIKXMDSoASAFQAw%3D%3D"
+           target="_blank" rel="noopener noreferrer">
+          {{ product.location_city or shop_city }}, {{ product.location_country or shop_country }}
+        </a>
+
+        <div class="product-price-row">
+          <span class="product-price-now">{{ _('Prix sur commande') }}</span>
+        </div>
+
+        {% if stock_state == 'out_of_stock' %}
+        <span class="product-stock out">{{ _('Rupture de stock') }}</span>
+        {% elif stock_state == 'low_stock' %}
+        <span class="product-stock low">{{ _('Stock bas') }}</span>
+        {% else %}
+        <span class="product-stock in">{{ _('En stock') }}</span>
+        {% endif %}
+
+        <p class="product-description">{{ product.description or product.short_description or t('Article disponible dans notre boutique.') }}</p>
+
+        <form method="post" action="{{ url_for('cart.add_to_cart', product_id=product.id) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+          <div class="product-form-grid">
+            <div class="form-group">
+              <label class="form-label" for="size">{{ _('Taille') }}</label>
+              <select id="size" class="form-select" name="size">
+                <option value="">{{ _('Aucune') }}</option>
+                {% for s in sizes %}
+                <option value="{{ s }}">{{ s }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="color">{{ _('Couleur') }}</label>
+              <select id="color" class="form-select" name="color">
+                <option value="">{{ _('Aucune') }}</option>
+                {% for c in colors %}
+                <option value="{{ c }}">{{ c }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="quantity">{{ _('Quantité') }}</label>
+              <input id="quantity" class="form-input" type="number" name="quantity" min="1" max="99" value="1">
+            </div>
+          </div>
+
+          <div class="product-actions">
+            <button type="submit" class="btn btn-primary" {% if stock_state == 'out_of_stock' %}disabled{% endif %}>
+              {{ _('Ajouter au panier') }}
+            </button>
+            <button type="submit" name="buy_now" value="1" class="btn btn-secondary" {% if stock_state == 'out_of_stock' %}disabled{% endif %}>
+              {{ _('Acheter maintenant') }}
+            </button>
+          </div>
+        </form>
+
+        <div class="product-extra">
+          <span>{{ _('Vues') }}: {{ product.views or 0 }}</span>
+          <span style="margin-left: 0.75rem;">{{ _('Stock') }}: {{ product.quantity if product.quantity is not none else 0 }}</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,201 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Contact - DORSEY Boutique{% endblock %}
+
+{% block extra_css %}
+<style>
+  .contact-page {
+    padding: 2.2rem 0 3rem;
+  }
+
+  .contact-wrap {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-header h1 {
+    margin: 0 0 0.4rem;
+    font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+    color: #0f172a;
+  }
+
+  .contact-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 1rem;
+  }
+
+  .contact-blue-card {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #1d4ed8 100%);
+    color: #ffffff;
+    border-radius: 18px;
+    padding: clamp(1.3rem, 2.5vw, 2rem);
+    box-shadow: 0 20px 44px rgba(30, 64, 175, 0.28);
+    text-align: center;
+  }
+
+  .contact-blue-card h2 {
+    margin: 0 0 0.55rem;
+    color: #ffffff;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+  }
+
+  .contact-blue-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.93);
+    line-height: 1.6;
+  }
+
+  .contact-form {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.7rem;
+    text-align: left;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+  }
+
+  .contact-field {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.95rem;
+    outline: none;
+  }
+
+  .contact-field::placeholder {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .contact-field:focus {
+    border-color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  textarea.contact-field {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .contact-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-actions .btn {
+    border-radius: 10px;
+    min-width: 170px;
+  }
+
+  .contact-blue-card .btn-outline {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .contact-blue-card .btn-outline:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  @media (max-width: 640px) {
+    .contact-page {
+      padding-top: 1.5rem;
+    }
+
+    .contact-blue-card {
+      border-radius: 14px;
+    }
+
+    .contact-actions .btn {
+      width: 100%;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="contact-page">
+  <div class="container">
+    <div class="contact-wrap">
+      <header class="contact-header">
+        <h1>Contact</h1>
+        <p>Une page simple et professionnelle pour nous joindre rapidement.</p>
+      </header>
+
+      <article class="contact-blue-card">
+        <h2>Laissez-nous votre message</h2>
+        <p>
+          Remplissez le formulaire ci-dessous. Au clic, une fenêtre de
+          composition s'ouvrira pour envoyer votre demande.
+        </p>
+
+        <form class="contact-form" id="contact-form">
+          <div class="contact-grid">
+            <input class="contact-field" id="contact-name" type="text" placeholder="Nom complet" required>
+            <input class="contact-field" id="contact-email" type="email" placeholder="Votre email" required>
+          </div>
+          <div class="contact-grid">
+            <input class="contact-field" id="contact-phone" type="text" placeholder="Téléphone (optionnel)">
+            <input class="contact-field" id="contact-subject" type="text" placeholder="Sujet" required>
+          </div>
+          <textarea class="contact-field" id="contact-message" placeholder="Votre message" required></textarea>
+
+          <div class="contact-actions">
+            <button class="btn btn-secondary" type="button" onclick="submitContactForm()">Envoyer la demande</button>
+            <a class="btn btn-outline" href="{{ url_for('products.list_products') }}">Voir le catalogue</a>
+          </div>
+        </form>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script>
+  function submitContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form || !form.reportValidity()) return;
+
+    const to = 'fadenegonhiyvesgonhi@gmail.com';
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const phone = document.getElementById('contact-phone').value.trim();
+    const subjectInput = document.getElementById('contact-subject').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
+
+    const subject = encodeURIComponent('[Contact Dorsey Shop] ' + subjectInput);
+    const body = encodeURIComponent(
+      'Nom: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Téléphone: ' + (phone || '-') + '\n\n' +
+      'Message:\n' + message
+    );
+
+    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to='
+      + encodeURIComponent(to) + '&su=' + subject + '&body=' + body;
+
+    const popup = window.open(gmailUrl, '_blank', 'noopener');
+    if (!popup) {
+      window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+    }
+  }
+  
+</script>
+
+{% endblock %}

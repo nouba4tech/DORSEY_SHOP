@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Paiement') }}{% endblock %}
+
+{% block content %}
+<div class="container py-10">
+    <div class="section-title">
+        <h1 class="text-2xl font-bold">{{ _('Paiement') }}</h1>
+        <a class="link" href="{{ url_for('cart.view_cart') }}">← {{ _('Retour au panier') }}</a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="card lg:col-span-2">
+            <h2 class="text-xl font-semibold">{{ _('Informations de livraison') }}</h2>
+            <form method="post" action="{{ url_for('cart.checkout_submit') }}" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {{ form.csrf_token }}
+
+                <div class="field md:col-span-2">
+                    <label class="label">{{ _('Nom complet') }}</label>
+                    {{ form.full_name(class_='input') }}
+                </div>
+                <div class="field">
+                    <label class="label">{{ _('Téléphone') }}</label>
+                    {{ form.phone(class_='input') }}
+                </div>
+                <div class="field">
+                    <label class="label">{{ _('Code postal') }}</label>
+                    {{ form.postal_code(class_='input') }}
+                </div>
+                <div class="field md:col-span-2">
+                    <label class="label">{{ _('Adresse') }}</label>
+                    {{ form.address(class_='input') }}
+                </div>
+                <div class="field">
+                    <label class="label">{{ _('Ville') }}</label>
+                    {{ form.city(class_='input') }}
+                </div>
+                <div class="field">
+                    <label class="label">{{ _('Pays') }}</label>
+                    {{ form.country(class_='input') }}
+                </div>
+
+                <div class="field">
+                    <label class="label">{{ _('Livraison') }}</label>
+                    {{ form.shipping_method(class_='select') }}
+                </div>
+                <div class="field">
+                    <label class="label">{{ _('Paiement') }}</label>
+                    {{ form.payment_method(class_='select') }}
+                </div>
+
+                <div class="md:col-span-2 flex gap-3 justify-end mt-2">
+                    <a href="{{ url_for('cart.view_cart') }}" class="btn btn-secondary">{{ _('Annuler') }}</a>
+                    <button type="submit" class="btn btn-primary">{{ _('Confirmer la commande') }}</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2 class="text-xl font-semibold">{{ _('Récapitulatif') }}</h2>
+            <div class="mt-4 space-y-3">
+                {% for it in items %}
+                    <div class="flex justify-between text-sm">
+                        <div>
+                            <div class="font-semibold">{{ it.product.name }}</div>
+                            <div class="text-gray-400">{{ _('Qté') }}: {{ it.quantity }}{% if it.size %} • {{ _('Taille') }}: {{ it.size }}{% endif %}{% if it.color %} • {{ _('Couleur') }}: {{ it.color }}{% endif %}</div>
+                        </div>
+                        <div class="font-semibold">{{ format_price(it.total) }}</div>
+                    </div>
+                {% endfor %}
+
+                <div class="divider"></div>
+                <div class="flex justify-between"><span class="text-gray-300">{{ _('Sous-total') }}</span><span class="font-semibold">{{ format_price(totals.subtotal) }}</span></div>
+                <div class="flex justify-between"><span class="text-gray-300">{{ _('Remise') }}</span><span class="font-semibold">- {{ format_price(totals.discount_amount) }}</span></div>
+                <div class="flex justify-between"><span class="text-gray-300">{{ _('TVA') }}</span><span class="font-semibold">{{ format_price(totals.tax_amount) }}</span></div>
+                <div class="flex justify-between"><span class="text-gray-300">{{ _('Livraison') }}</span><span class="font-semibold">{{ format_price(totals.shipping_cost) }}</span></div>
+                <div class="divider"></div>
+                <div class="flex justify-between text-lg"><span class="font-bold">{{ _('Total') }}</span><span class="price">{{ format_price(totals.total_amount) }}</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

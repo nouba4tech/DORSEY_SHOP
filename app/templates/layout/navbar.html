@@ -1,0 +1,117 @@
+<nav class="bg-gray-900 border-b border-orange-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <a href="{{ url_for('main.index') }}" class="text-2xl font-bold text-orange-500">{{ shop_name }}</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="{{ url_for('main.index') }}" class="text-white hover:text-orange-500 transition">{{
+                    _('Accueil') }}</a>
+                <a href="{{ url_for('products.list_products') }}" class="text-white hover:text-orange-500 transition">{{
+                    _('Catalogue') }}</a>
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('cart.view_cart') }}" class="text-white hover:text-orange-500 transition">{{
+                    _('Panier') }}</a>
+                <a href="{{ url_for('auth.profile') }}" class="text-white hover:text-orange-500 transition">{{
+                    _('Profil') }}</a>
+                {% if current_user.is_admin %}
+                <a href="{{ url_for('admin.dashboard') }}" class="text-white hover:text-orange-500 transition">{{
+                    _('Admin') }}</a>
+                {% endif %}
+                <form method="post" action="{{ url_for('auth.logout') }}" class="inline">
+                    <button type="submit" class="text-white hover:text-orange-500 transition">{{ _('Déconnexion')
+                        }}</button>
+                </form>
+                {% else %}
+                <a href="{{ url_for('auth.login') }}" class="text-white hover:text-orange-500 transition">{{
+                    _('Connexion') }}</a>
+                <a href="{{ url_for('auth.register') }}" class="text-white hover:text-orange-500 transition">{{
+                    _('Inscription') }}</a>
+                {% endif %}
+
+                <!-- Language Selector -->
+                <div class="relative group ml-4">
+                    <button class="flex items-center text-white hover:text-orange-500 transition focus:outline-none">
+                        <span class="mr-1">{{ lang_flags[current_lang] }}</span>
+                        <span>{{ current_lang.upper() }}</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute right-0 mt-2 w-40 bg-gray-800 border border-gray-700 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div class="py-1">
+                            {% for code, name in languages.items() %}
+                            <a href="{{ url_for('main.set_language', lang=code) }}"
+                                class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-orange-500 transition">
+                                <span class="mr-2">{{ lang_flags[code] }}</span>
+                                <span>{{ name }}</span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:hidden flex items-center space-x-4">
+                <!-- Mobile Language Selector -->
+                <div class="relative group">
+                    <button class="text-white hover:text-orange-500 focus:outline-none">
+                        <span>{{ lang_flags[current_lang] }}</span>
+                    </button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-gray-800 border border-gray-700 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        {% for code, name in languages.items() %}
+                        <a href="{{ url_for('main.set_language', lang=code) }}"
+                            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-orange-500">
+                            {{ lang_flags[code] }} {{ name }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button id="mobile-menu-button" class="text-white hover:text-orange-500 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="{{ url_for('main.index') }}" class="block px-3 py-2 text-white hover:text-orange-500">{{
+                _('Accueil') }}</a>
+            <a href="{{ url_for('products.list_products') }}"
+                class="block px-3 py-2 text-white hover:text-orange-500">{{ _('Catalogue') }}</a>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('cart.view_cart') }}" class="block px-3 py-2 text-white hover:text-orange-500">{{
+                _('Panier') }}</a>
+            <a href="{{ url_for('auth.profile') }}" class="block px-3 py-2 text-white hover:text-orange-500">{{
+                _('Profil') }}</a>
+            {% if current_user.is_admin %}
+            <a href="{{ url_for('admin.dashboard') }}" class="block px-3 py-2 text-white hover:text-orange-500">{{
+                _('Admin') }}</a>
+            {% endif %}
+            <form method="post" action="{{ url_for('auth.logout') }}" class="block">
+                <button type="submit" class="w-full text-left px-3 py-2 text-white hover:text-orange-500">{{
+                    _('Déconnexion') }}</button>
+            </form>
+            {% else %}
+            <a href="{{ url_for('auth.login') }}" class="block px-3 py-2 text-white hover:text-orange-500">{{
+                _('Connexion') }}</a>
+            <a href="{{ url_for('auth.register') }}" class="block px-3 py-2 text-white hover:text-orange-500">{{
+                _('Inscription') }}</a>
+            {% endif %}
+            <div class="border-t border-gray-700 mt-2 pt-2">
+                <p class="px-3 py-1 text-xs text-gray-400 uppercase tracking-wider">{{ _('Langue') }}</p>
+                {% for code, name in languages.items() %}
+                <a href="{{ url_for('main.set_language', lang=code) }}"
+                    class="block px-3 py-2 text-white hover:text-orange-500 {% if code == current_lang %}bg-gray-700 text-orange-500{% endif %}">
+                    {{ lang_flags[code] }} {{ name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</nav>

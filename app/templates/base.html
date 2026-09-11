@@ -1,0 +1,903 @@
+﻿<!DOCTYPE html>
+<html lang="{{ current_lang }}" dir="{{ 'rtl' if current_lang == 'ar' else 'ltr' }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DORSEY-SHOP{% endblock %}</title>
+    <meta name="description" content="{{ _('DORSEY-SHOP - Mode et accessoires au Tchad') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo/Dorsey-Boutique.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20260212-header-pro">
+    <script>
+        // Check theme before page load to avoid flash
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <style>
+        /* Theme Transition */
+        html.theme-transition,
+        html.theme-transition *,
+        html.theme-transition *:before,
+        html.theme-transition *:after {
+            transition: all 0.4s ease !important;
+            transition-delay: 0 !important;
+        }
+
+        /* Dark Mode Colors */
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --border-light: #1e293b;
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --primary-light: #60a5fa;
+            --navbar-bg: #0b1120;
+            --input-bg: #1e293b;
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] body::before {
+            opacity: 0.05;
+        }
+
+        [data-theme="dark"] .navbar {
+            background: var(--navbar-bg);
+            border-bottom-color: var(--border);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="dark"] .brand-text,
+        [data-theme="dark"] .nav-link,
+        [data-theme="dark"] .contact-header h1 {
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .lang-summary,
+        [data-theme="dark"] .theme-toggle-btn {
+            background: #1e293b;
+            border-color: #334155;
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .lang-summary:hover,
+        [data-theme="dark"] .theme-toggle-btn:hover {
+            background: #334155;
+        }
+
+        [data-theme="dark"] .nav-account-menu {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        [data-theme="dark"] .nav-account-menu a {
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .nav-account-menu a:hover {
+            background: #334155;
+            color: var(--primary-light);
+        }
+
+        [data-theme="dark"] .card,
+        [data-theme="dark"] .catalog-strip,
+        [data-theme="dark"] .catalog-controls,
+        [data-theme="dark"] .catalog-card,
+        [data-theme="dark"] .catalog-empty,
+        [data-theme="dark"] .left-nav-card,
+        [data-theme="dark"] .product-detail-card,
+        [data-theme="dark"] .cart-card {
+            background: var(--bg-secondary) !important;
+            border-color: var(--border) !important;
+            color: var(--text-primary) !important;
+        }
+
+        [data-theme="dark"] .catalog-strip-list a {
+            color: var(--text-primary) !important;
+        }
+
+        [data-theme="dark"] .catalog-strip-list a:hover {
+            background: #2d3748 !important;
+            color: var(--primary-light) !important;
+        }
+
+        [data-theme="dark"] .catalog-strip-list a.active {
+            background: var(--primary) !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .catalog-title a,
+        [data-theme="dark"] .catalog-price-now,
+        [data-theme="dark"] .catalog-remaining {
+            color: var(--text-primary) !important;
+        }
+
+        [data-theme="dark"] .catalog-desc,
+        [data-theme="dark"] .catalog-toolbar p {
+            color: var(--text-secondary) !important;
+        }
+
+        /* Forms in Dark Mode */
+        [data-theme="dark"] .form-input,
+        [data-theme="dark"] .form-control,
+        [data-theme="dark"] .form-select,
+        [data-theme="dark"] .form-textarea {
+            background-color: var(--bg-primary) !important;
+            border-color: var(--border) !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .form-input:focus,
+        [data-theme="dark"] .form-select:focus,
+        [data-theme="dark"] .form-textarea:focus {
+            border-color: var(--primary) !important;
+            background-color: var(--bg-primary) !important;
+            box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3) !important;
+        }
+
+        [data-theme="dark"] .form-input::placeholder,
+        [data-theme="dark"] .form-control::placeholder,
+        [data-theme="dark"] .form-select::placeholder,
+        [data-theme="dark"] .form-textarea::placeholder {
+            color: var(--text-muted) !important;
+            opacity: 0.7;
+        }
+
+        [data-theme="dark"] .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23cbd5e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 0.5rem center !important;
+            background-size: 1.5em 1.5em !important;
+            padding-right: 2.5rem !important;
+            appearance: none !important;
+        }
+
+        /* Buttons and Badges in Dark Mode */
+        [data-theme="dark"] .btn-secondary {
+            background-color: #334155 !important;
+            border-color: #475569 !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .btn-secondary:hover {
+            background-color: #475569 !important;
+        }
+
+        [data-theme="dark"] .btn-ghost {
+            color: var(--text-secondary) !important;
+        }
+
+        [data-theme="dark"] .btn-ghost:hover {
+            background-color: #2d3748 !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .badge {
+            background-color: #1e293b !important;
+            border: 1px solid var(--border) !important;
+            color: var(--text-primary) !important;
+        }
+
+        [data-theme="dark"] .catalog-media {
+            background-color: #0f172a !important;
+        }
+
+        [data-theme="dark"] .footer {
+            background: #0b1120 !important;
+            border-top-color: var(--border) !important;
+        }
+
+        /* Cart and Tables in Dark Mode */
+        [data-theme="dark"] .table-responsive,
+        [data-theme="dark"] .table {
+            background: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+        }
+
+        [data-theme="dark"] .table th {
+            background: #1e293b !important;
+            border-color: var(--border) !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .table td {
+            border-color: var(--border) !important;
+        }
+
+        /* Lists and Groups */
+        [data-theme="dark"] .list-group-item {
+            background-color: var(--bg-secondary) !important;
+            border-color: var(--border) !important;
+            color: var(--text-primary) !important;
+        }
+
+        /* Flash Messages */
+        [data-theme="dark"] .alert-info {
+            background-color: #1e293b !important;
+            border-color: #1e40af !important;
+            color: #93c5fd !important;
+        }
+
+        /* Sidebar Mobile Fix */
+        [data-theme="dark"] .sidebar {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        }
+
+        [data-theme="dark"] .sidebar-nav a {
+            color: var(--text-secondary) !important;
+        }
+
+        [data-theme="dark"] .sidebar-nav a:hover {
+            background: rgba(59, 130, 246, 0.1) !important;
+            color: var(--primary-light) !important;
+        }
+
+        [data-theme="dark"] .sidebar-nav a.active {
+            background: var(--primary) !important;
+            color: #ffffff !important;
+        }
+
+        /* Product Detail specifics */
+        [data-theme="dark"] .product-title {
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .product-price-now {
+            color: var(--primary-light) !important;
+        }
+
+        [data-theme="dark"] .quantity-input {
+            background: var(--bg-primary) !important;
+            color: #ffffff !important;
+            border-color: var(--border) !important;
+        }
+
+        /* Generic overrides for any white background elements */
+        [data-theme="dark"] [style*="background: #ffffff"],
+        [data-theme="dark"] [style*="background:#ffffff"],
+        [data-theme="dark"] [style*="background-color: #ffffff"],
+        [data-theme="dark"] [style*="background-color:#ffffff"],
+        [data-theme="dark"] [style*="background: white"],
+        [data-theme="dark"] [style*="background-color: white"] {
+            background-color: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+        }
+
+        /* Override specific text colors that might be hardcoded to dark */
+        [data-theme="dark"] [style*="color: #0f172a"],
+        [data-theme="dark"] [style*="color:#0f172a"],
+        [data-theme="dark"] [style*="color: black"],
+        [data-theme="dark"] [style*="color:#000000"] {
+            color: var(--text-primary) !important;
+        }
+
+        /* Theme Toggle Button Styles */
+        .theme-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #475569;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: #f8fafc;
+        }
+
+        .theme-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        #theme-toggle-sun,
+        .theme-toggle-sun-simple,
+        [data-theme="dark"] #theme-toggle-moon,
+        [data-theme="dark"] .theme-toggle-moon-simple {
+            display: none;
+        }
+
+        [data-theme="dark"] #theme-toggle-sun,
+        [data-theme="dark"] .theme-toggle-sun-simple {
+            display: block !important;
+            color: #fcd34d;
+        }
+
+        #theme-toggle-moon,
+        .theme-toggle-moon-simple {
+            display: block !important;
+            color: #64748b;
+        }
+
+        .lang-selector {
+            position: relative;
+        }
+
+        .lang-summary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 0.6rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            background: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .lang-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .lang-flag {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid #e2e8f0;
+            object-fit: cover;
+            display: inline-block;
+        }
+
+        .lang-menu {
+            min-width: 150px;
+            display: none;
+        }
+
+        .lang-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-selector details[open] .lang-menu {
+            display: block;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    {% set endpoint = request.endpoint or '' %}
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-container">
+                <div class="navbar-left">
+                    <button class="left-nav-toggle" id="left-nav-toggle" type="button"
+                        aria-label="{{ _('Ouvrir le menu rapide') }}" aria-controls="left-nav" aria-expanded="false"
+                        onclick="toggleLeftNav()">
+                        <span class="burger" aria-hidden="true">
+                            <span class="burger-bar"></span>
+                            <span class="burger-bar"></span>
+                            <span class="burger-bar"></span>
+                        </span>
+                    </button>
+                    <a href="{{ url_for('main.index') }}" class="navbar-brand"
+                        aria-label="{{ _('DORSEY Boutique - Accueil') }}">
+                        <img src="{{ url_for('static', filename='images/logo/Dorsey-Boutique.png') }}"
+                            alt="DORSEY Boutique" style="height: 40px;">
+                        <span class="brand-text">DORSEY SHOP</span>
+                    </a>
+                </div>
+
+                <ul class="navbar-nav" role="list">
+                    <li><a href="{{ url_for('main.index') }}"
+                            class="nav-link {% if endpoint == 'main.index' %}active{% endif %}">{{ _('Accueil') }}</a>
+                    </li>
+                    <li><a href="{{ url_for('products.list_products') }}"
+                            class="nav-link {% if endpoint.startswith('products.') %}active{% endif %}">{{
+                            _('Catalogue') }}</a></li>
+                    <li><a href="{{ url_for('cart.view_cart') }}"
+                            class="nav-link {% if endpoint.startswith('cart.') %}active{% endif %}">{{ _('Panier') }}{%
+                            if cart_count > 0 %} ({{ cart_count }}){% endif %}</a></li>
+                    <li><a href="{{ url_for('main.track_order') }}"
+                            class="nav-link {% if endpoint == 'main.track_order' %}active{% endif %}">{{ _('Commande')
+                            }}</a></li>
+
+
+                </ul>
+
+                <div class="navbar-actions">
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-outline nav-btn">{{ _('Déconnexion') }}</a>
+                    <div class="nav-account">
+                        <button type="button" class="nav-account-toggle" id="account-toggle"
+                            aria-label="{{ _('Mon compte') }}" aria-expanded="false" aria-controls="account-menu">
+                            <span class="nav-account-icon" aria-hidden="true">👤</span>
+                            <span class="nav-account-caret" aria-hidden="true"></span>
+                        </button>
+                        <div class="nav-account-menu" id="account-menu" role="menu">
+                            <a href="{{ url_for('auth.profile') }}" role="menuitem">{{ _('Mon profil') }}</a>
+                            <a href="{{ url_for('auth.logout') }}" role="menuitem">{{ _('Déconnexion') }}</a>
+                        </div>
+                    </div>
+                    <div class="lang-selector">
+                        <details class="nav-link" style="position: relative;">
+                            <summary class="lang-summary">
+                                <img class="lang-flag"
+                                    src="{{ url_for('static', filename='images/flags/' ~ current_lang ~ '.svg') }}"
+                                    alt="{{ languages[current_lang] }}">
+                                <span class="lang-code">{{ lang_badges[current_lang] }}</span>
+                            </summary>
+                            <div class="nav-account-menu lang-menu" style="right: auto; left: 0;">
+                                <a href="{{ url_for('main.set_language', lang='fr') }}" role="menuitem"><img
+                                        class="lang-flag" src="{{ url_for('static', filename='images/flags/fr.svg') }}"
+                                        alt="Français"> Français</a>
+                                <a href="{{ url_for('main.set_language', lang='en') }}" role="menuitem"><img
+                                        class="lang-flag" src="{{ url_for('static', filename='images/flags/en.svg') }}"
+                                        alt="English"> English</a>
+                                <a href="{{ url_for('main.set_language', lang='ar') }}" role="menuitem"><img
+                                        class="lang-flag" src="{{ url_for('static', filename='images/flags/ar.svg') }}"
+                                        alt="العربية"> العربية</a>
+                            </div>
+                        </details>
+                    </div>
+                    {% else %}
+                    <a href="{{ url_for('main.about') }}" class="btn btn-outline nav-btn">{{ _('A propos') }}</a>
+                    <a href="{{ url_for('main.contact') }}" class="btn btn-outline nav-btn">{{ _('Contact') }}</a>
+                    <a href="{{ url_for('main.help_center') }}" class="btn btn-outline nav-btn">{{ _('Aide') }}</a>
+                    <div class="nav-account">
+                        <button type="button" class="nav-account-toggle" id="account-toggle"
+                            aria-label="{{ _('Mon compte') }}" aria-expanded="false" aria-controls="account-menu">
+                            <span class="nav-account-icon" aria-hidden="true">👤</span>
+                            <span class="nav-account-caret" aria-hidden="true"></span>
+                        </button>
+                        <div class="nav-account-menu" id="account-menu" role="menu">
+                            <a href="{{ url_for('auth.login') }}" role="menuitem">{{ _('Connexion') }}</a>
+                            <a href="{{ url_for('auth.register') }}" role="menuitem">{{ _('Inscription') }}</a>
+                        </div>
+                    </div>
+                    <div class="lang-selector">
+                        <details class="nav-link" style="position: relative;">
+                            <summary class="lang-summary">
+                                <img class="lang-flag"
+                                    src="{{ url_for('static', filename='images/flags/' ~ current_lang ~ '.svg') }}"
+                                    alt="{{ languages[current_lang] }}">
+                                <span class="lang-code">{{ lang_badges[current_lang] }}</span>
+                            </summary>
+                            <div class="nav-account-menu lang-menu" style="right: auto; left: 0;">
+                                <a href="{{ url_for('main.set_language', lang='fr') }}" role="menuitem"><img
+                                        class="lang-flag" src="{{ url_for('static', filename='images/flags/fr.svg') }}"
+                                        alt="Français"> Français</a>
+                                <a href="{{ url_for('main.set_language', lang='en') }}" role="menuitem"><img
+                                        class="lang-flag" src="{{ url_for('static', filename='images/flags/en.svg') }}"
+                                        alt="English"> English</a>
+                                <a href="{{ url_for('main.set_language', lang='ar') }}" role="menuitem"><img
+                                        class="lang-flag" src="{{ url_for('static', filename='images/flags/ar.svg') }}"
+                                        alt="العربية"> العربية</a>
+                            </div>
+                        </details>
+                    </div>
+                    {% endif %}
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="theme-toggle-btn" title="{{ _('Changer de thème') }}">
+                        <svg id="theme-toggle-moon" class="theme-icon" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-sun" class="theme-icon" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <button class="mobile-menu-toggle" aria-label="{{ _('Ouvrir le menu') }}" onclick="toggleSidebar()">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>{{ _('Menu') }}</h3>
+            <button onclick="toggleSidebar()"
+                style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: inherit;">×</button>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-nav">
+                <li><a href="{{ url_for('main.index') }}" onclick="toggleSidebar()"
+                        class="{% if endpoint == 'main.index' %}active{% endif %}">{{ _('Accueil') }}</a></li>
+                <li><a href="{{ url_for('products.list_products') }}" onclick="toggleSidebar()"
+                        class="{% if endpoint.startswith('products.') %}active{% endif %}">{{ _('Catalogue') }}</a></li>
+                <li><a href="{{ url_for('cart.view_cart') }}" onclick="toggleSidebar()"
+                        class="{% if endpoint.startswith('cart.') %}active{% endif %}">{{ _('Panier') }}{% if cart_count
+                        > 0 %} ({{ cart_count }}){% endif %}</a></li>
+                <li><a href="{{ url_for('main.track_order') }}" onclick="toggleSidebar()"
+                        class="{% if endpoint == 'main.track_order' %}active{% endif %}">{{ _('Commande') }}</a></li>
+                <li>
+                    <details class="left-nav-group">
+                        <summary>{{ _('Langue') }} {{ lang_badges[current_lang] }}</summary>
+                        <a href="{{ url_for('main.set_language', lang='fr') }}" onclick="toggleSidebar()"><img
+                                class="lang-flag" src="{{ url_for('static', filename='images/flags/fr.svg') }}"
+                                alt="Français"> Français</a>
+                        <a href="{{ url_for('main.set_language', lang='en') }}" onclick="toggleSidebar()"><img
+                                class="lang-flag" src="{{ url_for('static', filename='images/flags/en.svg') }}"
+                                alt="English"> English</a>
+                        <a href="{{ url_for('main.set_language', lang='ar') }}" onclick="toggleSidebar()"><img
+                                class="lang-flag" src="{{ url_for('static', filename='images/flags/ar.svg') }}"
+                                alt="العربية"> العربية</a>
+                    </details>
+                </li>
+                <li>
+                    <div style="padding: 0.5rem 1.5rem;">
+                        <button class="theme-toggle-btn" title="{{ _('Changer de thème') }}"
+                            style="width: 100%; justify-content: flex-start; gap: 0.75rem; padding: 0.5rem 1rem; height: auto;">
+                            <svg class="theme-icon theme-toggle-moon-simple" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px;">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                            <svg class="theme-icon theme-toggle-sun-simple" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg" style="width: 18px; height: 18px; display: none;">
+                                <path
+                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                    fill-rule="evenodd" clip-rule="evenodd"></path>
+                            </svg>
+                            <span style="font-weight: 600; font-size: 0.9rem;">{{ _('Mode Sombre/Clair') }}</span>
+                        </button>
+                    </div>
+                </li>
+                <li><a href="{{ url_for('main.about') }}" onclick="toggleSidebar()"
+                        class="{% if endpoint == 'main.about' %}active{% endif %}">{{ _('A propos') }}</a></li>
+                <li><a href="{{ url_for('main.help_center') }}" onclick="toggleSidebar()"
+                        class="{% if endpoint == 'main.help_center' %}active{% endif %}">{{ _('Aide') }}</a></li>
+
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('auth.logout') }}" onclick="toggleSidebar()">{{ _('Déconnexion') }}</a></li>
+                {% else %}
+                <li><a href="{{ url_for('main.contact') }}" onclick="toggleSidebar()">{{ _('Contact') }}</a></li>
+                <li><a href="{{ url_for('main.about') }}" onclick="toggleSidebar()">{{ _('A propos') }}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="left-nav-backdrop" id="left-nav-backdrop" onclick="closeLeftNav()"></div>
+
+    <aside class="left-nav" id="left-nav" aria-label="{{ _('Navigation latérale') }}">
+        <nav class="left-nav-card simple-nav">
+            <a href="{{ url_for('main.index') }}" class="left-nav-item {% if endpoint == 'main.index' %}active{% endif %}">{{ _('Accueil') }}</a>
+            <a href="{{ url_for('products.list_products') }}" class="left-nav-item {% if endpoint.startswith('products.') %}active{% endif %}">{{ _('Catalogue') }}</a>
+            <a href="{{ url_for('cart.view_cart') }}" class="left-nav-item {% if endpoint.startswith('cart.') %}active{% endif %}">{{ _('Panier') }}{% if cart_count > 0 %} ({{ cart_count }}){% endif %}</a>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('auth.profile') }}" class="left-nav-item {% if endpoint == 'auth.profile' %}active{% endif %}">{{ _('Mon profil') }}</a>
+            <a href="{{ url_for('auth.orders') }}" class="left-nav-item {% if endpoint == 'auth.orders' %}active{% endif %}">{{ _('Mes commandes') }}</a>
+            <a href="{{ url_for('auth.logout') }}" class="left-nav-item">{{ _('Déconnexion') }}</a>
+            {% else %}
+            <a href="{{ url_for('auth.login') }}" class="left-nav-item {% if endpoint == 'auth.login' %}active{% endif %}">{{ _('Connexion') }}</a>
+            <a href="{{ url_for('auth.register') }}" class="left-nav-item {% if endpoint == 'auth.register' %}active{% endif %}">{{ _('Inscription') }}</a>
+            {% endif %}
+            <a href="{{ url_for('main.about') }}" class="left-nav-item {% if endpoint == 'main.about' %}active{% endif %}">{{ _('A propos') }}</a>
+            <a href="{{ url_for('main.contact') }}" class="left-nav-item {% if endpoint == 'main.contact' %}active{% endif %}">{{ _('Contact') }}</a>
+        </nav>
+    </aside>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-deco footer-deco-left"></div>
+        <div class="footer-deco footer-deco-right"></div>
+        <div class="container footer-shell">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <a href="{{ url_for('main.index') }}" class="footer-logo-wrap"
+                        aria-label="{{ _('Accueil Dorsey Shop') }}">
+                        <img src="{{ url_for('static', filename='images/logo/Dorsey-Boutique.png') }}" alt="Dorsey Shop"
+                            class="footer-logo">
+                    </a>
+                    <p class="footer-intro">{{ _("Bienvenue sur Dorsey Shop, l'unique dénicheur des bons plans mode et
+                        lifestyle.") }}</p>
+                    <p class="footer-col-title">{{ _('Nous suivre') }}</p>
+                    <div class="footer-social">
+                        <a href="https://wa.me/23568070958" target="_blank" rel="noopener noreferrer"
+                            aria-label="{{ _('WhatsApp Yves Dorsey') }}" title="{{ _('WhatsApp Yves Dorsey') }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 12a8 8 0 1 1-14.2-4.9A8 8 0 0 1 20 12Z" />
+                                <path d="M6.5 20.2 8 16.8" />
+                                <path
+                                    d="M10 9.5c.3-.5.7-.5 1-.2l.8 1c.3.3.3.7 0 1l-.4.5c.6 1 1.2 1.6 2.2 2.1l.4-.3c.4-.3.8-.3 1.1 0l1 .8c.3.3.3.8-.2 1.1-.8.6-1.9.7-3.1.2-2.1-.9-4.1-2.9-5-5-.5-1.2-.4-2.3.2-3.2Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"
+                            aria-label="{{ _('Instagram') }}" title="{{ _('Instagram') }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="5" />
+                                <circle cx="12" cy="12" r="4" />
+                                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer"
+                            aria-label="{{ _('TikTok') }}" title="{{ _('TikTok') }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path
+                                    d="M14 4c1.1 2 2.5 3 4.5 3.2v2.8c-1.9-.1-3.4-.8-4.5-1.9v6.3a4.3 4.3 0 1 1-3.3-4.1" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61560591898971" target="_blank"
+                            rel="noopener noreferrer" aria-label="{{ _('Facebook') }}" title="{{ _('Facebook') }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M14 8h3V4h-3c-2.2 0-4 1.8-4 4v2H8v4h2v6h4v-6h3l1-4h-4V8z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@NLABTECHOFFICIEL" target="_blank" rel="noopener noreferrer"
+                            aria-label="{{ _('YouTube') }}" title="{{ _('YouTube') }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="6" width="18" height="12" rx="3" />
+                                <path d="M10 9.5v5l4.5-2.5-4.5-2.5Z" fill="currentColor" stroke="none" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>{{ _('Liens utiles') }}</h3>
+                    <ul class="footer-list">
+                        <li><a href="{{ url_for('main.about') }}">{{ _('Qui sommes-nous ?') }}</a></li>
+                        <li><a href="{{ url_for('main.help_center') }}">{{ _('Aide') }}</a></li>
+                        <li><a href="{{ url_for('main.contact') }}">{{ _('Contacts') }}</a></li>
+                        <li><a href="{{ url_for('main.track_order') }}">{{ _('Commande') }}</a></li>
+                        {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('auth.profile') }}">{{ _('Mon compte') }}</a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('auth.login') }}">{{ _('Connexion') }}</a></li>
+                        <li><a href="{{ url_for('auth.register') }}">{{ _('Inscription') }}</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('products.list_products') }}">{{ _('Plan du site') }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>{{ _('Nos services') }}</h3>
+                    <ul class="footer-list">
+                        <li>{{ _('Présence sur notre site & application') }}</li>
+                        <li>{{ _('Promotion des produits/services en bannière web et mobile') }}</li>
+                        <li>{{ _('Mise en avant de vos produits à travers nos réseaux sociaux') }}</li>
+                        <li>{{ _('Génération et vente des QR codes dédiés') }}</li>
+                        <li>{{ _('Gestion des médias sociaux') }}</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col newsletter-col" id="newsletter">
+                    <h3>{{ _('Newsletter') }}</h3>
+                    <form class="newsletter-form" method="post" action="{{ url_for('main.subscribe_newsletter') }}"
+                        onsubmit="submitNewsletter(event)">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="source" value="footer">
+                        <label for="newsletter-email" class="sr-only">{{ _('Email') }}</label>
+                        <input id="newsletter-email" name="email" type="email"
+                            placeholder="{{ _('Saisir votre mail') }}" aria-label="{{ _('Email newsletter') }}"
+                            autocomplete="email" inputmode="email" required>
+                        <button type="submit">{{ _('Soumettre') }}</button>
+                    </form>
+                    {% set newsletter_status = request.args.get('newsletter') %}
+                    <p id="newsletter-feedback"
+                        class="newsletter-feedback{% if newsletter_status %} is-visible is-{{ newsletter_status }}{% endif %}"
+                        role="status" aria-live="polite">
+                        {% if newsletter_status == 'success' %}
+                        {{ _('Merci ! Votre inscription est confirmée.') }}
+                        {% elif newsletter_status == 'exists' %}
+                        {{ _('Vous êtes déjà inscrit à la newsletter.') }}
+                        {% elif newsletter_status == 'invalid' %}
+                        {{ _('Adresse email invalide.') }}
+                        {% elif newsletter_status == 'error' %}
+                        {{ _('Une erreur est survenue. Réessayez plus tard.') }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-links">
+                    <a href="#">{{ _('Conditions Générales de Vente') }}</a>
+                    <a href="#">{{ _("Conditions Générales d'Utilisation") }}</a>
+                    <a href="#">{{ _('Mentions légales') }}</a>
+                </div>
+                <p class="footer-copyright">&copy; 2026 Dorsey Shop</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        function addToCart(productId) {
+            const btn = event.target;
+            btn.textContent = '✓ Ajouté';
+            btn.classList.add('btn-primary');
+
+            setTimeout(() => {
+                btn.textContent = 'Ajouter';
+                btn.classList.remove('btn-primary');
+            }, 2000);
+        }
+
+        function submitNewsletter(event) {
+            event.preventDefault();
+            const form = event.target;
+            const input = document.getElementById('newsletter-email');
+            const feedback = document.getElementById('newsletter-feedback');
+            const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+            const csrfInput = form ? form.querySelector('input[name="csrf_token"]') : null;
+
+            if (!input) return;
+
+            const email = input.value.trim();
+            if (!email) {
+                setNewsletterFeedback("{{ _('Merci de saisir une adresse email.') }}", 'invalid', feedback);
+                return;
+            }
+
+            if (!form || !form.action) {
+                setNewsletterFeedback("{{ _('Action indisponible. Réessayez plus tard.') }}", 'error', feedback);
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "{{ _('Envoi...') }}";
+            }
+
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('source', 'footer');
+            if (csrfInput && csrfInput.value) {
+                formData.append('csrf_token', csrfInput.value);
+            }
+
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                body: formData
+            })
+                .then(async (response) => {
+                    let data = null;
+                    try {
+                        data = await response.json();
+                    } catch (error) {
+                        data = null;
+                    }
+
+                    if (!data || !data.message) {
+                        throw new Error('Bad response');
+                    }
+
+                    setNewsletterFeedback(data.message, data.status || (response.ok ? 'success' : 'error'), feedback);
+
+                    if (response.ok && data.status === 'success') {
+                        input.value = '';
+                    }
+                })
+                .catch(() => {
+                    setNewsletterFeedback("{{ _('Une erreur est survenue. Réessayez plus tard.') }}", 'error', feedback);
+                })
+                .finally(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = "{{ _('Soumettre') }}";
+                    }
+                });
+        }
+
+        function setNewsletterFeedback(message, state, target) {
+            if (!target) return;
+            const safeState = state || 'success';
+            target.textContent = message;
+            target.classList.remove('is-success', 'is-exists', 'is-invalid', 'is-error');
+            target.classList.add('is-visible', `is-${safeState}`);
+        }
+
+        function toggleLeftNav() {
+            const panel = document.getElementById('left-nav');
+            const backdrop = document.getElementById('left-nav-backdrop');
+            const btn = document.getElementById('left-nav-toggle');
+            if (!panel || !backdrop || !btn) return;
+
+            panel.classList.toggle('open');
+            backdrop.classList.toggle('open');
+            const isOpen = panel.classList.contains('open');
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
+
+        function closeLeftNav() {
+            const panel = document.getElementById('left-nav');
+            const backdrop = document.getElementById('left-nav-backdrop');
+            const btn = document.getElementById('left-nav-toggle');
+            if (!panel || !backdrop || !btn) return;
+
+            panel.classList.remove('open');
+            backdrop.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+
+        (function () {
+            const toggle = document.getElementById('account-toggle');
+            const menu = document.getElementById('account-menu');
+            if (!toggle || !menu) return;
+
+            toggle.addEventListener('click', function (event) {
+                event.stopPropagation();
+                const open = menu.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+                    menu.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        })();
+
+        // Theme Toggle Logic
+        (function () {
+            const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
+            if (themeToggleBtns.length === 0) return;
+
+            themeToggleBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    // Add transition class
+                    document.documentElement.classList.add('theme-transition');
+
+                    // Toggle theme
+                    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                    }
+
+                    // Remove transition class after animation
+                    setTimeout(() => {
+                        document.documentElement.classList.remove('theme-transition');
+                    }, 400);
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

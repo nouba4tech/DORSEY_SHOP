@@ -1,0 +1,1654 @@
+# English translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-02-16 19:22+0100\n"
+"PO-Revision-Date: 2026-02-16 18:09+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/templates/base.html:79 app/templates/base.html:157
+#: app/templates/base.html:190 app/templates/layout/footer.html:14
+#: app/templates/layout/navbar.html:9 app/templates/layout/navbar.html:84
+#: check_mo_files.py:24 test_babel_direct.py:24 test_babel_direct.py:28
+msgid "Accueil"
+msgstr "Home"
+
+#: app/templates/about.html:3
+msgid "À Propos - DORSEY-SHOP"
+msgstr "About - DORSEY-SHOP"
+
+#: app/templates/about.html:167
+msgid "À Propos de DORSEY"
+msgstr "About DORSEY"
+
+#: app/templates/about.html:168
+msgid "Une boutique mode simple, fiable et orientée qualité."
+msgstr "A simple, reliable and quality-oriented fashion boutique."
+
+#: app/templates/about.html:171
+msgid "Présentation"
+msgstr "Présentation"
+
+#: app/templates/about.html:173 app/templates/base.html:266
+msgid "Qui sommes-nous ?"
+msgstr "Who are we?"
+
+#: app/templates/about.html:174
+msgid ""
+"DORSEY-SHOP sélectionne des articles tendance pour hommes, femmes et "
+"accessoires."
+msgstr ""
+
+#: app/templates/about.html:177
+msgid "Notre promesse"
+msgstr "Notre promesse"
+
+#: app/templates/about.html:178
+msgid "Des produits soignés, des prix clairs et une expérience d'achat fluide."
+msgstr "Des produits soignés, des prix clairs et une expérience d'achat fluide."
+
+#: app/templates/about.html:181
+msgid "Notre objectif"
+msgstr "Notre objectif"
+
+#: app/templates/about.html:182
+msgid "Vous proposer la mode utile et élégante, avec un service client réactif."
+msgstr "Vous proposer la mode utile et élégante, avec un service client réactif."
+
+#: app/templates/about.html:188
+msgid "Découvrir la boutique"
+msgstr "Découvrir la boutique"
+
+#: app/templates/about.html:189
+msgid "Parcourez nos collections ou contactez-nous directement."
+msgstr "Parcourez nos collections ou contactez-nous directement."
+
+#: app/templates/about.html:192 app/templates/cart/view.html:395
+msgid "Explorer le catalogue"
+msgstr "Explore the catalog"
+
+#: app/templates/about.html:193 app/templates/help.html:199
+msgid "Nous contacter"
+msgstr "Contact us"
+
+#: app/templates/base.html:8
+msgid "DORSEY-SHOP - Mode et accessoires au Tchad"
+msgstr "DORSEY-SHOP - Fashion and accessories in Chad"
+
+#: app/templates/base.html:65
+msgid "Ouvrir le menu rapide"
+msgstr "Ouvrir le menu rapide"
+
+#: app/templates/base.html:72
+msgid "DORSEY Boutique - Accueil"
+msgstr "DORSEY Boutique - Accueil"
+
+#: app/templates/base.html:80 app/templates/base.html:158
+#: app/templates/base.html:194 app/templates/layout/footer.html:15
+#: app/templates/layout/navbar.html:11 app/templates/layout/navbar.html:86
+msgid "Catalogue"
+msgstr "Catalog"
+
+#: app/templates/base.html:81 app/templates/base.html:159
+#: app/templates/base.html:195 app/templates/cart/view.html:3
+#: app/templates/layout/footer.html:17 app/templates/layout/navbar.html:14
+#: app/templates/layout/navbar.html:89
+msgid "Panier"
+msgstr "Cart"
+
+#: app/templates/admin/order_detail.html:8
+#: app/templates/auth/order_detail.html:3
+#: app/templates/auth/order_detail.html:8 app/templates/base.html:82
+#: app/templates/base.html:160 app/templates/base.html:269
+#: app/templates/help.html:153 app/templates/orders/invoice.html:116
+#: app/templates/orders/track.html:60
+msgid "Commande"
+msgstr "Order"
+
+#: app/templates/base.html:89 app/templates/base.html:97
+#: app/templates/base.html:173 app/templates/base.html:202
+#: app/templates/index.html:302 app/templates/layout/navbar.html:22
+#: app/templates/layout/navbar.html:98
+msgid "Déconnexion"
+msgstr "Logout"
+
+#: app/templates/base.html:91 app/templates/base.html:118
+#: app/templates/base.html:271
+msgid "Mon compte"
+msgstr "My account"
+
+#: app/templates/auth/profile.html:8 app/templates/base.html:96
+#: app/templates/base.html:201 app/templates/index.html:301
+msgid "Mon profil"
+msgstr "My Profile"
+
+#: app/templates/base.html:114 app/templates/base.html:169
+#: app/templates/base.html:176 app/templates/base.html:209
+msgid "A propos"
+msgstr "A propos"
+
+#: app/templates/base.html:115 app/templates/base.html:175
+#: app/templates/base.html:210 app/templates/contact.html:138
+msgid "Contact"
+msgstr "Contact"
+
+#: app/templates/base.html:116 app/templates/base.html:170
+#: app/templates/base.html:267
+msgid "Aide"
+msgstr "Help"
+
+#: app/templates/auth/login.html:3 app/templates/auth/login.html:42
+#: app/templates/base.html:123 app/templates/base.html:204
+#: app/templates/base.html:273 app/templates/index.html:304
+#: app/templates/layout/footer.html:20 app/templates/layout/navbar.html:27
+#: app/templates/layout/navbar.html:102
+msgid "Connexion"
+msgstr "Login"
+
+#: app/templates/auth/register.html:3 app/templates/auth/register.html:42
+#: app/templates/base.html:124 app/templates/base.html:205
+#: app/templates/base.html:274 app/templates/index.html:305
+#: app/templates/layout/footer.html:21 app/templates/layout/navbar.html:29
+#: app/templates/layout/navbar.html:104
+msgid "Inscription"
+msgstr "Register"
+
+#: app/templates/base.html:143
+msgid "Ouvrir le menu"
+msgstr "Ouvrir le menu"
+
+#: app/templates/base.html:152
+msgid "Menu"
+msgstr "Menu"
+
+#: app/templates/base.html:163 app/templates/layout/navbar.html:107
+msgid "Langue"
+msgstr "Langue"
+
+#: app/templates/base.html:186
+msgid "Navigation latérale"
+msgstr "Navigation latérale"
+
+#: app/templates/base.html:188
+msgid "Navigation"
+msgstr "Navigation"
+
+#: app/templates/base.html:193
+msgid "Boutique"
+msgstr "Shop"
+
+#: app/templates/base.html:199
+msgid "Compte"
+msgstr "Account"
+
+#: app/templates/base.html:224
+msgid "Accueil Dorsey Shop"
+msgstr "Accueil Dorsey Shop"
+
+#: app/templates/base.html:227
+msgid ""
+"Bienvenue sur Dorsey Shop, l'unique dénicheur des bons plans mode et "
+"lifestyle."
+msgstr ""
+
+#: app/templates/base.html:228
+msgid "Nous suivre"
+msgstr "Nous suivre"
+
+#: app/templates/base.html:230
+msgid "WhatsApp Yves Dorsey"
+msgstr "WhatsApp Yves Dorsey"
+
+#: app/templates/base.html:237
+msgid "Instagram"
+msgstr "Instagram"
+
+#: app/templates/base.html:244
+msgid "TikTok"
+msgstr "TikTok"
+
+#: app/templates/base.html:249
+msgid "Facebook"
+msgstr "Facebook"
+
+#: app/templates/base.html:254
+msgid "YouTube"
+msgstr "YouTube"
+
+#: app/templates/base.html:264 app/templates/layout/footer.html:12
+msgid "Liens utiles"
+msgstr "Useful Links"
+
+#: app/templates/base.html:268
+msgid "Contacts"
+msgstr "Contacts"
+
+#: app/templates/base.html:276
+msgid "Plan du site"
+msgstr "Sitemap"
+
+#: app/templates/base.html:281
+msgid "Nos services"
+msgstr "Our services"
+
+#: app/templates/base.html:283
+msgid "Présence sur notre site & application"
+msgstr "Présence sur notre site & application"
+
+#: app/templates/base.html:284
+msgid "Promotion des produits/services en bannière web et mobile"
+msgstr "Promotion des produits/services en bannière web et mobile"
+
+#: app/templates/base.html:285
+msgid "Mise en avant de vos produits à travers nos réseaux sociaux"
+msgstr "Mise en avant de vos produits à travers nos réseaux sociaux"
+
+#: app/templates/base.html:286
+msgid "Génération et vente des QR codes dédiés"
+msgstr "Génération et vente des QR codes dédiés"
+
+#: app/templates/base.html:287
+msgid "Gestion des médias sociaux"
+msgstr "Gestion des médias sociaux"
+
+#: app/templates/base.html:292
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: app/templates/admin/order_detail.html:30 app/templates/auth/login.html:50
+#: app/templates/auth/profile.html:19 app/templates/base.html:296
+msgid "Email"
+msgstr "Email"
+
+#: app/templates/base.html:297
+msgid "Saisir votre mail"
+msgstr "Enter your email"
+
+#: app/templates/base.html:297
+msgid "Email newsletter"
+msgstr "Email newsletter"
+
+#: app/templates/base.html:298 app/templates/base.html:409
+msgid "Soumettre"
+msgstr "Soumettre"
+
+#: app/templates/base.html:303
+msgid "Merci ! Votre inscription est confirmée."
+msgstr "Merci ! Votre inscription est confirmée."
+
+#: app/templates/base.html:305
+msgid "Vous êtes déjà inscrit à la newsletter."
+msgstr "Vous êtes déjà inscrit à la newsletter."
+
+#: app/templates/base.html:307
+msgid "Adresse email invalide."
+msgstr "Adresse email invalide."
+
+#: app/templates/base.html:309 app/templates/base.html:404
+msgid "Une erreur est survenue. Réessayez plus tard."
+msgstr "Une erreur est survenue. Réessayez plus tard."
+
+#: app/templates/base.html:317
+msgid "Conditions Générales de Vente"
+msgstr "Conditions Générales de Vente"
+
+#: app/templates/base.html:318
+msgid "Conditions Générales d'Utilisation"
+msgstr "Conditions Générales d'Utilisation"
+
+#: app/templates/base.html:319
+msgid "Mentions légales"
+msgstr "Legal Notice"
+
+#: app/templates/base.html:359
+msgid "Merci de saisir une adresse email."
+msgstr "Merci de saisir une adresse email."
+
+#: app/templates/base.html:364
+msgid "Action indisponible. Réessayez plus tard."
+msgstr "Action indisponible. Réessayez plus tard."
+
+#: app/templates/base.html:370
+msgid "Envoi..."
+msgstr "Envoi..."
+
+#: app/templates/contact.html:3
+msgid "Contact - DORSEY Boutique"
+msgstr "Contact - DORSEY Boutique"
+
+#: app/templates/contact.html:139
+msgid "Une page simple et professionnelle pour nous joindre rapidement."
+msgstr "Une page simple et professionnelle pour nous joindre rapidement."
+
+#: app/templates/contact.html:143
+msgid "Laissez-nous votre message"
+msgstr "Laissez-nous votre message"
+
+#: app/templates/contact.html:145
+msgid ""
+"Remplissez le formulaire ci-dessous. Au clic, une fenêtre de composition "
+"s'ouvrira pour envoyer votre\n"
+"          demande."
+msgstr ""
+
+#: app/templates/cart/checkout.html:19 app/templates/contact.html:151
+msgid "Nom complet"
+msgstr "Full Name"
+
+#: app/templates/contact.html:152
+msgid "Votre email"
+msgstr "Votre email"
+
+#: app/templates/contact.html:155
+msgid "Téléphone (optionnel)"
+msgstr "Téléphone (optionnel)"
+
+#: app/templates/contact.html:156
+msgid "Sujet"
+msgstr "Sujet"
+
+#: app/templates/contact.html:158
+msgid "Votre message"
+msgstr "Votre message"
+
+#: app/templates/contact.html:162
+msgid "Envoyer la demande"
+msgstr "Envoyer la demande"
+
+#: app/templates/contact.html:164 app/templates/help.html:200
+msgid "Voir le catalogue"
+msgstr "Voir le catalogue"
+
+#: app/templates/contact.html:183
+msgid "[Contact Dorsey Shop]"
+msgstr "[Contact Dorsey Shop]"
+
+#: app/templates/contact.html:185
+msgid "Nom:"
+msgstr "Nom:"
+
+#: app/templates/contact.html:186
+msgid "Email:"
+msgstr "Email:"
+
+#: app/templates/contact.html:187
+msgid "Téléphone:"
+msgstr "Téléphone:"
+
+#: app/templates/contact.html:188
+msgid "Message:"
+msgstr "Message:"
+
+#: app/templates/help.html:3
+msgid "Aide - DORSEY-SHOP"
+msgstr "Aide - DORSEY-SHOP"
+
+#: app/templates/help.html:145
+msgid "Centre d'aide"
+msgstr "Centre d'aide"
+
+#: app/templates/help.html:146
+msgid "Trouvez rapidement des réponses sur vos achats."
+msgstr "Trouvez rapidement des réponses sur vos achats."
+
+#: app/templates/help.html:151
+msgid "Suivre une commande"
+msgstr "Suivre une commande"
+
+#: app/templates/help.html:152
+msgid "Consultez l'état de votre commande et son suivi en temps réel."
+msgstr "Consultez l'état de votre commande et son suivi en temps réel."
+
+#: app/templates/admin/order_detail.html:36
+#: app/templates/auth/order_detail.html:50 app/templates/cart/checkout.html:44
+#: app/templates/cart/checkout.html:76 app/templates/cart/confirmation.html:25
+#: app/templates/cart/confirmation.html:62 app/templates/cart/view.html:369
+#: app/templates/help.html:156 app/templates/orders/invoice.html:173
+#: app/templates/orders/track.html:73 app/templates/orders/track.html:110
+msgid "Livraison"
+msgstr "Shipping"
+
+#: app/templates/help.html:157
+msgid "Délais, zones desservies et frais de livraison expliqués clairement."
+msgstr "Délais, zones desservies et frais de livraison expliqués clairement."
+
+#: app/templates/help.html:160
+msgid "Retours & échanges"
+msgstr "Retours & échanges"
+
+#: app/templates/help.html:161
+msgid "Procédure simple si un article ne convient pas."
+msgstr "Procédure simple si un article ne convient pas."
+
+#: app/templates/admin/order_detail.html:33
+#: app/templates/admin/order_detail.html:82 app/templates/admin/orders.html:19
+#: app/templates/auth/order_detail.html:46 app/templates/auth/profile.html:34
+#: app/templates/cart/checkout.html:3 app/templates/cart/checkout.html:8
+#: app/templates/cart/checkout.html:48 app/templates/cart/confirmation.html:21
+#: app/templates/help.html:164 app/templates/orders/invoice.html:141
+#: app/templates/orders/track.html:69
+msgid "Paiement"
+msgstr "Payment"
+
+#: app/templates/help.html:165
+msgid "Carte en ligne ou paiement à la livraison selon la zone."
+msgstr "Carte en ligne ou paiement à la livraison selon la zone."
+
+#: app/templates/help.html:168
+msgid "Tailles & produits"
+msgstr "Tailles & produits"
+
+#: app/templates/help.html:169
+msgid "Conseils rapides pour bien choisir vos tailles."
+msgstr "Conseils rapides pour bien choisir vos tailles."
+
+#: app/templates/help.html:172
+msgid "Compte client"
+msgstr "Compte client"
+
+#: app/templates/help.html:173
+msgid "Gérez vos informations et consultez vos commandes."
+msgstr "Gérez vos informations et consultez vos commandes."
+
+#: app/templates/help.html:177 app/templates/help.html:178
+msgid "Questions fréquentes"
+msgstr "Questions fréquentes"
+
+#: app/templates/help.html:180
+msgid "Quels sont les délais de livraison ?"
+msgstr "Quels sont les délais de livraison ?"
+
+#: app/templates/help.html:181
+msgid "La plupart des commandes sont livrées sous 24 à 72h selon la zone."
+msgstr "La plupart des commandes sont livrées sous 24 à 72h selon la zone."
+
+#: app/templates/help.html:184
+msgid "Puis-je payer à la livraison ?"
+msgstr "Puis-je payer à la livraison ?"
+
+#: app/templates/help.html:185
+msgid "Oui, lorsque l'option est disponible à l'étape de paiement."
+msgstr "Oui, lorsque l'option est disponible à l'étape de paiement."
+
+#: app/templates/help.html:188
+msgid "Comment suivre ma commande ?"
+msgstr "Comment suivre ma commande ?"
+
+#: app/templates/help.html:189
+msgid "Rendez-vous sur la page Commande et saisissez votre numéro."
+msgstr "Rendez-vous sur la page Commande et saisissez votre numéro."
+
+#: app/templates/help.html:195
+msgid "Besoin d'aide supplémentaire ?"
+msgstr "Besoin d'aide supplémentaire ?"
+
+#: app/templates/help.html:196
+msgid "Notre équipe répond rapidement via le formulaire de contact."
+msgstr "Notre équipe répond rapidement via le formulaire de contact."
+
+#: app/templates/index.html:3
+msgid "DORSEY-SHOP - Mode et Accessoires au Tchad"
+msgstr "DORSEY-SHOP - Mode et Accessoires au Tchad"
+
+#: app/templates/index.html:289
+msgid "Accès compte"
+msgstr "Accès compte"
+
+#: app/templates/index.html:316
+msgid "La référence de la mode au Tchad."
+msgstr "La référence de la mode au Tchad."
+
+#: app/templates/index.html:317
+msgid "Collections exclusives et style incomparable."
+msgstr "Collections exclusives et style incomparable."
+
+#: app/templates/index.html:321
+msgid "Explorer le Catalogue"
+msgstr "Explorer le Catalogue"
+
+#: app/templates/index.html:324
+msgid "Contactez-nous"
+msgstr "Contactez-nous"
+
+#: app/templates/index.html:335
+msgid "Inspirations de la boutique"
+msgstr "Inspirations de la boutique"
+
+#: app/templates/admin/dashboard.html:3 app/templates/auth/profile.html:10
+#: app/templates/layout/navbar.html:19 app/templates/layout/navbar.html:94
+msgid "Admin"
+msgstr "Admin"
+
+#: app/templates/admin/dashboard.html:8
+msgid "Dashboard Admin"
+msgstr "Dashboard Admin"
+
+#: app/templates/admin/dashboard.html:9
+msgid "Accès admin"
+msgstr "Accès admin"
+
+#: app/templates/admin/dashboard.html:14
+msgid "Utilisateurs"
+msgstr "Utilisateurs"
+
+#: app/templates/admin/dashboard.html:18
+msgid "Produits"
+msgstr "Products"
+
+#: app/templates/admin/dashboard.html:22
+msgid "Commandes"
+msgstr "Orders"
+
+#: app/templates/admin/dashboard.html:28
+msgid "Commandes récentes"
+msgstr "Commandes récentes"
+
+#: app/templates/admin/dashboard.html:32 app/templates/admin/orders.html:16
+#: app/templates/auth/profile.html:32
+msgid "N°"
+msgstr "N°"
+
+#: app/templates/admin/dashboard.html:32
+#: app/templates/admin/order_detail.html:29 app/templates/admin/orders.html:17
+#: app/templates/orders/invoice.html:127
+msgid "Client"
+msgstr "Client"
+
+#: app/templates/admin/dashboard.html:32
+#: app/templates/admin/order_detail.html:32
+#: app/templates/admin/order_detail.html:73 app/templates/admin/orders.html:18
+#: app/templates/auth/order_detail.html:45 app/templates/auth/profile.html:33
+#: app/templates/cart/confirmation.html:20
+#: app/templates/orders/invoice.html:139
+msgid "Statut"
+msgstr "Statut"
+
+#: app/templates/admin/dashboard.html:32 app/templates/admin/orders.html:20
+#: app/templates/auth/order_detail.html:25 app/templates/auth/profile.html:35
+#: app/templates/cart/checkout.html:78 app/templates/cart/confirmation.html:64
+#: app/templates/cart/view.html:375 app/templates/orders/invoice.html:156
+#: app/templates/orders/invoice.html:174 app/templates/orders/track.html:112
+msgid "Total"
+msgstr "Total"
+
+#: app/templates/admin/dashboard.html:32 app/templates/admin/orders.html:21
+#: app/templates/auth/profile.html:36
+msgid "Date"
+msgstr "Date"
+
+#: app/templates/admin/dashboard.html:45 app/templates/admin/orders.html:37
+msgid "Aucune commande."
+msgstr "Aucune commande."
+
+#: app/templates/admin/order_detail.html:3
+msgid "Admin - Commande"
+msgstr "Admin - Commande"
+
+#: app/templates/admin/order_detail.html:10 app/templates/admin/orders.html:8
+msgid "Toutes les commandes"
+msgstr "Toutes les commandes"
+
+#: app/templates/admin/order_detail.html:11
+#: app/templates/auth/order_detail.html:11
+#: app/templates/cart/confirmation.html:68
+msgid "Voir facture"
+msgstr "Voir facture"
+
+#: app/templates/admin/order_detail.html:27
+#: app/templates/cart/confirmation.html:18
+msgid "Détails"
+msgstr "Détails"
+
+#: app/templates/admin/order_detail.html:31
+#: app/templates/auth/order_detail.html:47
+#: app/templates/cart/confirmation.html:22 app/templates/orders/track.html:70
+msgid "Montant"
+msgstr "Montant"
+
+#: app/templates/admin/order_detail.html:42
+msgid "T??l??phone"
+msgstr "T??l??phone"
+
+#: app/templates/admin/order_detail.html:45
+#: app/templates/admin/order_detail.html:91
+#: app/templates/auth/order_detail.html:59
+#: app/templates/cart/confirmation.html:34 app/templates/orders/track.html:82
+msgid "Transporteur"
+msgstr "Transporteur"
+
+#: app/templates/admin/order_detail.html:46
+msgid "Num??ro de suivi"
+msgstr "Num??ro de suivi"
+
+#: app/templates/admin/order_detail.html:51
+#: app/templates/auth/order_detail.html:66
+#: app/templates/cart/confirmation.html:42 app/templates/orders/track.html:10
+#: app/templates/orders/track.html:90
+msgid "Suivi de commande"
+msgstr "Suivi de commande"
+
+#: app/templates/admin/order_detail.html:68
+msgid "Mise à jour"
+msgstr "Mise à jour"
+
+#: app/templates/admin/order_detail.html:95
+#: app/templates/auth/order_detail.html:60
+#: app/templates/cart/confirmation.html:35
+#: app/templates/orders/invoice.html:144
+msgid "Numéro de suivi"
+msgstr "Numéro de suivi"
+
+#: app/templates/admin/order_detail.html:99
+msgid "Enregistrer"
+msgstr "Save"
+
+#: app/templates/admin/orders.html:3
+msgid "Admin - Commandes"
+msgstr "Admin - Commandes"
+
+#: app/templates/admin/orders.html:9
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: app/templates/admin/orders.html:22 app/templates/auth/profile.html:37
+msgid "Action"
+msgstr "Action"
+
+#: app/templates/admin/orders.html:32
+msgid "Gérer"
+msgstr "Gérer"
+
+#: app/templates/auth/login.html:43
+msgid "Accédez à votre espace DORSEY"
+msgstr "Accédez à votre espace DORSEY"
+
+#: app/templates/auth/login.html:55 app/templates/auth/register.html:60
+msgid "Mot de passe"
+msgstr "Password"
+
+#: app/templates/auth/login.html:61
+msgid "Se souvenir"
+msgstr "Se souvenir"
+
+#: app/templates/auth/login.html:63
+msgid "Créer un compte"
+msgstr "Créer un compte"
+
+#: app/templates/auth/login.html:67 app/templates/auth/register.html:76
+msgid "Se connecter"
+msgstr "Sign In"
+
+#: app/templates/auth/order_detail.html:10
+msgid "Retour au profil"
+msgstr "Retour au profil"
+
+#: app/templates/auth/order_detail.html:17
+msgid "Articles"
+msgstr "Articles"
+
+#: app/templates/auth/order_detail.html:22
+#: app/templates/orders/invoice.html:153
+msgid "Produit"
+msgstr "Produit"
+
+#: app/templates/auth/order_detail.html:23 app/templates/cart/checkout.html:66
+#: app/templates/orders/invoice.html:154
+msgid "Qté"
+msgstr "Qté"
+
+#: app/templates/auth/order_detail.html:24
+#: app/templates/orders/invoice.html:155
+msgid "Prix"
+msgstr "Price"
+
+#: app/templates/auth/order_detail.html:37
+msgid "Aucun article trouvé."
+msgstr "Aucun article trouvé."
+
+#: app/templates/auth/order_detail.html:43 app/templates/cart/checkout.html:60
+#: app/templates/cart/confirmation.html:57 app/templates/cart/view.html:338
+msgid "Récapitulatif"
+msgstr "Récapitulatif"
+
+#: app/templates/auth/order_detail.html:56 app/templates/auth/profile.html:21
+#: app/templates/cart/checkout.html:23 app/templates/cart/confirmation.html:31
+#: app/templates/orders/track.html:40 app/templates/orders/track.html:79
+msgid "Téléphone"
+msgstr "Phone"
+
+#: app/templates/auth/profile.html:3 app/templates/layout/footer.html:18
+#: app/templates/layout/navbar.html:16 app/templates/layout/navbar.html:91
+msgid "Profil"
+msgstr "Profil"
+
+#: app/templates/auth/profile.html:16
+msgid "Informations"
+msgstr "Informations"
+
+#: app/templates/auth/profile.html:18
+msgid "Utilisateur"
+msgstr "Utilisateur"
+
+#: app/templates/auth/profile.html:20
+msgid "Nom"
+msgstr "Last Name"
+
+#: app/templates/auth/profile.html:22 app/templates/cart/checkout.html:31
+msgid "Adresse"
+msgstr "Address"
+
+#: app/templates/auth/profile.html:27
+msgid "Mes commandes"
+msgstr "Mes commandes"
+
+#: app/templates/auth/profile.html:46
+msgid "Voir"
+msgstr "Voir"
+
+#: app/templates/auth/profile.html:51
+msgid "Aucune commande pour le moment."
+msgstr "Aucune commande pour le moment."
+
+#: app/templates/auth/register.html:43
+msgid "Rejoignez DORSEY Boutique"
+msgstr "Rejoignez DORSEY Boutique"
+
+#: app/templates/auth/register.html:50
+msgid "Nom d'utilisateur"
+msgstr "Nom d'utilisateur"
+
+#: app/templates/auth/register.html:55
+msgid "Adresse email"
+msgstr "Adresse email"
+
+#: app/templates/auth/register.html:65
+msgid "Confirmation du mot de passe"
+msgstr "Confirmation du mot de passe"
+
+#: app/templates/auth/register.html:70
+msgid "Créer mon compte"
+msgstr "Créer mon compte"
+
+#: app/templates/auth/register.html:75
+msgid "Déjà membre"
+msgstr "Déjà membre"
+
+#: app/templates/cart/checkout.html:9
+msgid "Retour au panier"
+msgstr "Retour au panier"
+
+#: app/templates/cart/checkout.html:14
+msgid "Informations de livraison"
+msgstr "Informations de livraison"
+
+#: app/templates/cart/checkout.html:27
+msgid "Code postal"
+msgstr "Code postal"
+
+#: app/templates/cart/checkout.html:35
+msgid "Ville"
+msgstr "Ville"
+
+#: app/templates/cart/checkout.html:39
+msgid "Pays"
+msgstr "Pays"
+
+#: app/templates/cart/checkout.html:53
+msgid "Annuler"
+msgstr "Cancel"
+
+#: app/templates/cart/checkout.html:54
+msgid "Confirmer la commande"
+msgstr "Confirmer la commande"
+
+#: app/templates/cart/checkout.html:66 app/templates/cart/view.html:310
+#: app/templates/products/detail.html:237
+msgid "Taille"
+msgstr "Taille"
+
+#: app/templates/cart/checkout.html:66 app/templates/cart/view.html:311
+#: app/templates/products/detail.html:247
+msgid "Couleur"
+msgstr "Couleur"
+
+#: app/templates/cart/checkout.html:73 app/templates/cart/confirmation.html:59
+#: app/templates/cart/view.html:352 app/templates/orders/invoice.html:170
+#: app/templates/orders/track.html:107
+msgid "Sous-total"
+msgstr "Subtotal"
+
+#: app/templates/cart/checkout.html:74 app/templates/cart/confirmation.html:60
+#: app/templates/cart/view.html:358 app/templates/orders/invoice.html:171
+#: app/templates/orders/track.html:108
+msgid "Remise"
+msgstr "Remise"
+
+#: app/templates/cart/checkout.html:75 app/templates/cart/confirmation.html:61
+#: app/templates/orders/invoice.html:172 app/templates/orders/track.html:109
+msgid "TVA"
+msgstr "TVA"
+
+#: app/templates/cart/confirmation.html:3
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: app/templates/cart/confirmation.html:10
+msgid "Commande confirmée"
+msgstr "Commande confirmée"
+
+#: app/templates/cart/confirmation.html:11
+msgid "Merci pour votre achat. Votre commande a été enregistrée."
+msgstr "Merci pour votre achat. Votre commande a été enregistrée."
+
+#: app/templates/cart/confirmation.html:67
+msgid "Continuer"
+msgstr "Continue"
+
+#: app/templates/cart/confirmation.html:69
+msgid "Suivre ma commande"
+msgstr "Suivre ma commande"
+
+#: app/templates/cart/view.html:280
+msgid "Mon panier"
+msgstr "Mon panier"
+
+#: app/templates/cart/view.html:283 app/templates/products/list.html:437
+msgid "article"
+msgstr "article"
+
+#: app/templates/cart/view.html:283
+msgid "dans votre panier."
+msgstr "dans votre panier."
+
+#: app/templates/cart/view.html:285
+msgid "Votre panier est vide."
+msgstr "Votre panier est vide."
+
+#: app/templates/cart/view.html:289 app/templates/cart/view.html:385
+msgid "Continuer mes achats"
+msgstr "Continuer mes achats"
+
+#: app/templates/cart/view.html:308
+msgid "unité"
+msgstr "unité"
+
+#: app/templates/cart/view.html:317 app/templates/products/detail.html:257
+msgid "Quantité"
+msgstr "Quantity"
+
+#: app/templates/cart/view.html:321
+msgid "OK"
+msgstr "OK"
+
+#: app/templates/cart/view.html:329
+msgid "Retirer"
+msgstr "Retirer"
+
+#: app/templates/cart/view.html:342
+msgid "Code promo"
+msgstr "Promo Code"
+
+#: app/templates/cart/view.html:345 app/templates/products/list.html:427
+msgid "Appliquer"
+msgstr "Apply"
+
+#: app/templates/cart/view.html:347
+msgid "Exemples: WELCOME10, SUMMER20, FIXED15"
+msgstr "Exemples: WELCOME10, SUMMER20, FIXED15"
+
+#: app/templates/cart/view.html:364
+msgid "TVA (20%)"
+msgstr "TVA (20%)"
+
+#: app/templates/cart/view.html:370
+msgid "Gratuite"
+msgstr "Gratuite"
+
+#: app/templates/cart/view.html:381
+msgid "Procéder au paiement"
+msgstr "Procéder au paiement"
+
+#: app/templates/cart/view.html:383
+msgid "Se connecter pour payer"
+msgstr "Se connecter pour payer"
+
+#: app/templates/cart/view.html:388
+msgid "Paiement sécurisé. Vos informations sont protégées."
+msgstr "Paiement sécurisé. Vos informations sont protégées."
+
+#: app/templates/cart/view.html:393
+msgid "Votre panier est vide"
+msgstr "Votre panier est vide"
+
+#: app/templates/cart/view.html:394
+msgid "Ajoutez des produits depuis le catalogue pour commencer."
+msgstr "Ajoutez des produits depuis le catalogue pour commencer."
+
+#: app/templates/layout/footer.html:26
+msgid "Suivez-nous"
+msgstr "Follow us"
+
+#: app/templates/layout/footer.html:41
+msgid "Tous droits réservés."
+msgstr "All rights reserved."
+
+#: app/templates/orders/invoice.html:3 app/templates/orders/invoice.html:115
+msgid "Facture"
+msgstr "Facture"
+
+#: app/templates/orders/invoice.html:133
+msgid "Adresse de livraison"
+msgstr "Adresse de livraison"
+
+#: app/templates/orders/invoice.html:178
+msgid "Télécharger la facture"
+msgstr "Télécharger la facture"
+
+#: app/templates/orders/invoice.html:180 app/templates/orders/invoice.html:182
+msgid "Retour à la commande"
+msgstr "Retour à la commande"
+
+#: app/templates/orders/track.html:3
+msgid "Suivi de commande - DORSEY-SHOP"
+msgstr "Suivi de commande - DORSEY-SHOP"
+
+#: app/templates/orders/track.html:12
+msgid "Entrez votre numéro de commande et votre téléphone pour suivre l'état."
+msgstr "Entrez votre numéro de commande et votre téléphone pour suivre l'état."
+
+#: app/templates/orders/track.html:28
+msgid "Numéro de commande"
+msgstr "Numéro de commande"
+
+#: app/templates/orders/track.html:50
+msgid "Rechercher"
+msgstr "Rechercher"
+
+#: app/templates/orders/track.html:61
+msgid "Statut actuel de votre commande."
+msgstr "Statut actuel de votre commande."
+
+#: app/templates/orders/track.html:83
+msgid "Suivi"
+msgstr "Suivi"
+
+#: app/templates/orders/track.html:105
+msgid "R??sum??"
+msgstr "R??sum??"
+
+#: app/templates/products/detail.html:184
+msgid "Retour au catalogue"
+msgstr "Retour au catalogue"
+
+#: app/templates/products/detail.html:201
+msgid "image"
+msgstr "image"
+
+#: app/templates/products/detail.html:223
+msgid "Rupture de stock"
+msgstr "Out of Stock"
+
+#: app/templates/products/detail.html:225 app/templates/products/list.html:485
+msgid "Stock bas"
+msgstr "Stock bas"
+
+#: app/templates/products/detail.html:227 app/templates/products/list.html:487
+msgid "En stock"
+msgstr "In Stock"
+
+#: app/templates/products/detail.html:239
+#: app/templates/products/detail.html:249
+msgid "Aucune"
+msgstr "Aucune"
+
+#: app/templates/products/detail.html:264 app/templates/products/list.html:497
+msgid "Ajouter au panier"
+msgstr "Add to Cart"
+
+#: app/templates/products/detail.html:267
+msgid "Acheter maintenant"
+msgstr "Acheter maintenant"
+
+#: app/templates/products/detail.html:273
+msgid "Vues"
+msgstr "Vues"
+
+#: app/templates/products/detail.html:274
+msgid "Stock"
+msgstr "Stock"
+
+#: app/templates/products/list.html:3
+msgid "Catalogue - DORSEY-SHOP"
+msgstr "Catalog - DORSEY-SHOP"
+
+#: app/templates/products/list.html:348 app/templates/products/list.html:418
+msgid "Nouveautés"
+msgstr "Nouveautés"
+
+#: app/templates/products/list.html:354
+msgid "Vêtements"
+msgstr "Vêtements"
+
+#: app/templates/products/list.html:360
+msgid "Jeans"
+msgstr "Jeans"
+
+#: app/templates/products/list.html:366
+msgid "Costumes"
+msgstr "Costumes"
+
+#: app/templates/products/list.html:372
+msgid "Sous-vêtements"
+msgstr "Sous-vêtements"
+
+#: app/templates/products/list.html:378
+msgid "Accessoires"
+msgstr "Accessoires"
+
+#: app/templates/products/list.html:384
+msgid "Saint Valentin"
+msgstr "Saint Valentin"
+
+#: app/templates/products/list.html:390
+msgid "Outlet"
+msgstr "Outlet"
+
+#: app/templates/products/list.html:399
+msgid "Recherche"
+msgstr "Search"
+
+#: app/templates/products/list.html:401
+msgid "Rechercher un article..."
+msgstr "Search for an item..."
+
+#: app/templates/products/list.html:405
+msgid "Collection"
+msgstr "Collection"
+
+#: app/templates/products/list.html:407
+msgid "Toute la boutique"
+msgstr "Toute la boutique"
+
+#: app/templates/products/list.html:416
+msgid "Tri"
+msgstr "Sort"
+
+#: app/templates/products/list.html:419
+msgid "Popularité"
+msgstr "Popularité"
+
+#: app/templates/products/list.html:420
+msgid "Prix croissant"
+msgstr "Prix croissant"
+
+#: app/templates/products/list.html:421
+msgid "Prix décroissant"
+msgstr "Prix décroissant"
+
+#: app/templates/products/list.html:428
+msgid "Réinitialiser"
+msgstr "Reset"
+
+#: app/templates/products/list.html:437
+#, fuzzy
+msgid ""
+"Aucun\n"
+"            article trouvé"
+msgstr "Aucun article trouvé"
+
+#: app/templates/products/list.html:439
+msgid "Sélection adaptée à vos filtres."
+msgstr "Selection adapted to your filters."
+
+#: app/templates/products/list.html:442
+#, python-brace-format
+msgid "Page {page} sur {pages}"
+msgstr "Page {page} sur {pages}"
+
+#: app/templates/products/list.html:456
+msgid "Promo"
+msgstr "Promo"
+
+#: app/templates/products/list.html:458
+msgid "Sélection"
+msgstr "Sélection"
+
+#: app/templates/products/list.html:483
+msgid "Rupture"
+msgstr "Rupture"
+
+#: app/templates/products/list.html:497
+msgid "Indisponible"
+msgstr "Indisponible"
+
+#: app/templates/products/list.html:511
+msgid "Il vous reste %(num)d article à découvrir"
+msgid_plural "Il vous reste %(num)d articles à découvrir"
+msgstr[0] "You have %(num)d item left to discover"
+msgstr[1] "You have %(num)d items left to discover"
+
+#: app/templates/products/list.html:520
+msgid "Précédent"
+msgstr "Previous"
+
+#: app/templates/products/list.html:538
+msgid "Suivant"
+msgstr "Next"
+
+#: app/templates/products/list.html:545
+msgid "Aucun produit pour ces critères"
+msgstr "Aucun produit pour ces critères"
+
+#: app/templates/products/list.html:547
+msgid "Essayez une autre recherche ou retirez certains filtres."
+msgstr "Try another search or remove some filters."
+
+#: app/templates/products/list.html:550
+msgid "Voir tout le catalogue"
+msgstr "View all catalog"
+
+#: app/templates/products/list.html:553
+msgid "Supprimer la recherche"
+msgstr "Delete search"
+
+#: venv/Lib/site-packages/click/_termui_impl.py:613
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: venv/Lib/site-packages/click/_termui_impl.py:617
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1114
+#: venv/Lib/site-packages/click/core.py:1151
+#, python-brace-format
+msgid "{text} {deprecated_message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1170
+#, fuzzy
+msgid "Options"
+msgstr "Informations"
+
+#: venv/Lib/site-packages/click/core.py:1245
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/core.py:1264
+#, python-brace-format
+msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1448
+msgid "Aborted!"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1822
+#, fuzzy
+msgid "Commands"
+msgstr "Orders"
+
+#: venv/Lib/site-packages/click/core.py:1853
+#, fuzzy
+msgid "Missing command."
+msgstr "Mes commandes"
+
+#: venv/Lib/site-packages/click/core.py:1931
+#, python-brace-format
+msgid "No such command {name!r}."
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2355
+msgid "Value must be an iterable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2378
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/core.py:2567
+#, python-brace-format
+msgid ""
+"DeprecationWarning: The {param_type} {name!r} is "
+"deprecated.{extra_message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:3015
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:3018
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:3022
+#, fuzzy
+msgid "required"
+msgstr "Retirer"
+
+#: venv/Lib/site-packages/click/core.py:3082
+msgid "(dynamic)"
+msgstr ""
+
+#: venv/Lib/site-packages/click/decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: venv/Lib/site-packages/click/decorators.py:522
+msgid "Show the version and exit."
+msgstr ""
+
+#: venv/Lib/site-packages/click/decorators.py:548
+msgid "Show this message and exit."
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:50
+#: venv/Lib/site-packages/click/exceptions.py:89
+#, fuzzy, python-brace-format
+msgid "Error: {message}"
+msgstr "Votre message"
+
+#: venv/Lib/site-packages/click/exceptions.py:81
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:130
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:132
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:190
+msgid "Missing argument"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:192
+msgid "Missing option"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:194
+msgid "Missing parameter"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:196
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:203
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:223
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:235
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/exceptions.py:282
+msgid "unknown error"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:289
+#, python-brace-format
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/formatting.py:156
+#, fuzzy
+msgid "Usage:"
+msgstr "Message:"
+
+#: venv/Lib/site-packages/click/parser.py:199
+#, python-brace-format
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: venv/Lib/site-packages/click/parser.py:381
+#, python-brace-format
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: venv/Lib/site-packages/click/parser.py:444
+#, python-brace-format
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/shell_completion.py:332
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: venv/Lib/site-packages/click/shell_completion.py:339
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:165
+#, fuzzy
+msgid "Repeat for confirmation"
+msgstr "Confirmation"
+
+#: venv/Lib/site-packages/click/termui.py:181
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:183
+#, fuzzy, python-brace-format
+msgid "Error: {e.message}"
+msgstr "Votre message"
+
+#: venv/Lib/site-packages/click/termui.py:194
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:253
+msgid "Error: invalid input"
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:872
+msgid "Press any key to continue..."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:332
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:369
+#, python-brace-format
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/types.py:460
+#, python-brace-format
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/types.py:482
+#, python-brace-format
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:538
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:719
+#, python-brace-format
+msgid "{value!r} is not a valid boolean. Recognized values: {states}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:747
+#, python-brace-format
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:937
+#, fuzzy
+msgid "file"
+msgstr "Ville"
+
+#: venv/Lib/site-packages/click/types.py:939
+msgid "directory"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:941
+msgid "path"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:988
+#, python-brace-format
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:997
+#, python-brace-format
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1005
+#, python-brace-format
+msgid "{name} {filename!r} is a directory."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1014
+#, python-brace-format
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1023
+#, python-brace-format
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1032
+#, python-brace-format
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1099
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/flask_wtf/file.py:35
+#: venv/Lib/site-packages/wtforms/validators.py:294
+#: venv/Lib/site-packages/wtforms/validators.py:322
+msgid "This field is required."
+msgstr ""
+
+#: venv/Lib/site-packages/flask_wtf/file.py:70
+#, python-brace-format
+msgid "File does not have an approved extension: {extensions}"
+msgstr ""
+
+#: venv/Lib/site-packages/flask_wtf/file.py:77
+msgid "File does not have an approved extension."
+msgstr ""
+
+#: venv/Lib/site-packages/flask_wtf/file.py:112
+#, python-brace-format
+msgid "File must be between {min_size} and {max_size} bytes."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:87
+#, python-format
+msgid "Invalid field name '%s'."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:100
+#, python-format
+msgid "Field must be equal to %(other_name)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:147
+#, python-format
+msgid "Field must be at least %(min)d character long."
+msgid_plural "Field must be at least %(min)d characters long."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:153
+#, python-format
+msgid "Field cannot be longer than %(max)d character."
+msgid_plural "Field cannot be longer than %(max)d characters."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:159
+#, python-format
+msgid "Field must be exactly %(max)d character long."
+msgid_plural "Field must be exactly %(max)d characters long."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:165
+#, python-format
+msgid "Field must be between %(min)d and %(max)d characters long."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:217
+#, python-format
+msgid "Number must be at least %(min)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:220
+#, python-format
+msgid "Number must be at most %(max)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:223
+#, python-format
+msgid "Number must be between %(min)s and %(max)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:357
+msgid "Invalid input."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:416
+msgid "Invalid email address."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:454
+msgid "Invalid IP address."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:497
+msgid "Invalid Mac address."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:532
+msgid "Invalid URL."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:553
+msgid "Invalid UUID."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:586
+#, python-format
+msgid "Invalid value, must be one of: %(values)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:621
+#, python-format
+msgid "Invalid value, can't be any of: %(values)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/csrf/core.py:96
+msgid "Invalid CSRF Token."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/csrf/session.py:63
+msgid "CSRF token missing."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/csrf/session.py:71
+msgid "CSRF failed."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/csrf/session.py:76
+msgid "CSRF token expired."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:132
+msgid "Invalid Choice: could not coerce."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:136
+#: venv/Lib/site-packages/wtforms/fields/choices.py:188
+msgid "Choices cannot be None."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:145
+msgid "Not a valid choice."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:182
+msgid "Invalid choice(s): one or more data inputs could not be coerced."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:198
+#, python-format
+msgid "'%(value)s' is not a valid choice for this field."
+msgid_plural "'%(value)s' are not valid choices for this field."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/wtforms/fields/datetime.py:50
+msgid "Not a valid datetime value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/datetime.py:76
+msgid "Not a valid date value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/datetime.py:102
+msgid "Not a valid time value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/numeric.py:82
+#: venv/Lib/site-packages/wtforms/fields/numeric.py:92
+msgid "Not a valid integer value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/numeric.py:167
+msgid "Not a valid decimal value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/numeric.py:196
+msgid "Not a valid float value."
+msgstr ""
+
+#~ msgid ""
+#~ "Remplissez le formulaire ci-dessous. Au"
+#~ " clic, une fenêtre de composition "
+#~ "s'ouvrira pour envoyer votre demande."
+#~ msgstr ""
+

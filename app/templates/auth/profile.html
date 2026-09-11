@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Profil') }}{% endblock %}
+
+{% block content %}
+<div class="container py-10">
+    <div class="section-title">
+        <h1 class="text-2xl font-bold">{{ _('Mon profil') }}</h1>
+        {% if current_user.is_admin %}
+            <a class="link" href="{{ url_for('admin.dashboard') }}">{{ _('Admin') }} →</a>
+        {% endif %}
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="card">
+            <h2 class="text-xl font-semibold">{{ _('Informations') }}</h2>
+            <div class="mt-4 space-y-2 text-gray-300">
+                <div><span class="text-gray-400">{{ _('Utilisateur') }}:</span> <span class="font-semibold">{{ user.username }}</span></div>
+                <div><span class="text-gray-400">{{ _('Email') }}:</span> <span class="font-semibold">{{ user.email }}</span></div>
+                <div><span class="text-gray-400">{{ _('Nom') }}:</span> {{ user.get_full_name() }}</div>
+                <div><span class="text-gray-400">{{ _('Téléphone') }}:</span> {{ user.phone or '-' }}</div>
+                <div><span class="text-gray-400">{{ _('Adresse') }}:</span> {{ user.address or '-' }}</div>
+            </div>
+        </div>
+
+        <div class="card lg:col-span-2">
+            <h2 class="text-xl font-semibold">{{ _('Mes commandes') }}</h2>
+            <div class="mt-4">
+                {% if orders %}
+                    <div class="table">
+                        <div class="table-row table-head">
+                            <div>{{ _('N°') }}</div>
+                            <div>{{ _('Statut') }}</div>
+                            <div>{{ _('Paiement') }}</div>
+                            <div>{{ _('Total') }}</div>
+                            <div>{{ _('Date') }}</div>
+                            <div>{{ _('Action') }}</div>
+                        </div>
+                        {% for o in orders %}
+                            <div class="table-row">
+                                <div class="font-semibold">{{ o.order_number }}</div>
+                                <div class="badge badge-sm {{ order_status_badge(o.status) }}">{{ order_status_label(o.status) }}</div>
+                                <div class="badge badge-sm {{ payment_status_badge(o.payment_status) }}">{{ payment_status_label(o.payment_status) }}</div>
+                                <div class="font-semibold">{{ format_price(o.total_amount) }}</div>
+                                <div class="text-gray-400">{{ o.created_at.strftime('%d/%m/%Y') if o.created_at else '' }}</div>
+                                <div><a class="link" href="{{ url_for('auth.order_detail', order_number=o.order_number) }}">{{ _('Voir') }}</a></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-gray-300">{{ _('Aucune commande pour le moment.') }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Suivi de commande - DORSEY-SHOP') }}{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container" style="max-width: 900px;">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-2xl font-bold mb-2">{{ _('Suivi de commande') }}</h1>
+        <p class="text-secondary mb-4">
+          {{ _("Entrez votre numéro de commande et votre téléphone pour suivre l'état.") }}
+        </p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="mb-4">
+          {% for category, message in messages %}
+          <div class="badge" style="background:#dc2626; color:#fff; margin-bottom:0.35rem;">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form method="post" class="grid gap-3" style="max-width: 520px;">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <div>
+            <label class="form-label" for="order_number">{{ _('Numéro de commande') }}</label>
+            <input
+              class="form-input"
+              id="order_number"
+              name="order_number"
+              type="text"
+              placeholder="DORSEY-YYYYMMDD-XXXX"
+              value="{{ order_number }}"
+              required
+            >
+          </div>
+          <div>
+            <label class="form-label" for="phone">{{ _('Téléphone') }}</label>
+            <input
+              class="form-input"
+              id="phone"
+              name="phone"
+              type="text"
+              placeholder="+235..."
+              required
+            >
+          </div>
+          <button type="submit" class="btn btn-primary">{{ _('Rechercher') }}</button>
+        </form>
+      </div>
+    </div>
+
+    {% if order %}
+    <div class="card mt-6">
+      <div class="card-body">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <div>
+            <h2 class="text-xl font-semibold">{{ _('Commande') }} {{ order.order_number }}</h2>
+            <p class="text-secondary">{{ _('Statut actuel de votre commande.') }}</p>
+          </div>
+          <span class="badge {{ order_status_badge(order.status) }}">{{ order_status_label(order.status) }}</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
+          <div class="lg:col-span-2">
+            <div class="space-y-2 text-secondary">
+              <div><span class="text-muted">{{ _('Paiement') }}:</span> <span class="badge {{ payment_status_badge(order.payment_status) }}">{{ payment_status_label(order.payment_status) }}</span></div>
+              <div><span class="text-muted">{{ _('Montant') }}:</span> <span class="font-semibold">{{ format_price(order.total_amount) }}</span></div>
+            </div>
+
+            <h3 class="text-lg font-semibold mt-5">{{ _('Livraison') }}</h3>
+            <div class="mt-2 text-secondary">
+              <div class="font-semibold">{{ order.shipping_full_name }}</div>
+              <div>{{ order.shipping_address }}</div>
+              <div>{{ order.shipping_postal_code }} {{ order.shipping_city }}</div>
+              <div>{{ order.shipping_country }}</div>
+              <div class="mt-2"><span class="text-muted">{{ _('Téléphone') }}:</span> {{ order.shipping_phone }}</div>
+              {% if order.tracking_number or order.carrier %}
+              <div class="mt-3">
+                <div><span class="text-muted">{{ _('Transporteur') }}:</span> {{ order.carrier or '-' }}</div>
+                <div><span class="text-muted">{{ _('Suivi') }}:</span> {{ order.tracking_number or '-' }}</div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold">{{ _('Suivi de commande') }}</h3>
+            <div class="order-timeline">
+              {% for step in order_timeline(order) %}
+              <div class="order-step{% if step.done %} done{% endif %}">
+                <span class="order-step-dot"></span>
+                <div>
+                  <div class="order-step-label">{{ step.label }}</div>
+                  {% if step.date %}
+                  <div class="order-step-date">{{ step.date.strftime('%d/%m/%Y %H:%M') }}</div>
+                  {% endif %}
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <h3 class="text-lg font-semibold mt-5">{{ _('R??sum??') }}</h3>
+            <div class="mt-4 space-y-2">
+              <div class="flex justify-between"><span class="text-secondary">{{ _('Sous-total') }}</span><span class="font-semibold">{{ format_price(order.subtotal) }}</span></div>
+              <div class="flex justify-between"><span class="text-secondary">{{ _('Remise') }}</span><span class="font-semibold">- {{ format_price(order.discount_amount) }}</span></div>
+              <div class="flex justify-between"><span class="text-secondary">{{ _('TVA') }}</span><span class="font-semibold">{{ format_price(order.tax_amount) }}</span></div>
+              <div class="flex justify-between"><span class="text-secondary">{{ _('Livraison') }}</span><span class="font-semibold">{{ format_price(order.shipping_cost) }}</span></div>
+              <div class="divider"></div>
+              <div class="flex justify-between text-lg"><span class="font-bold">{{ _('Total') }}</span><span class="price">{{ format_price(order.total_amount) }}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

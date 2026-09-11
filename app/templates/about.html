@@ -1,0 +1,198 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}{{ _('À Propos - DORSEY-SHOP') }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .about-page {
+    padding: 1.6rem 0 3rem;
+    position: relative;
+    background-image:
+      linear-gradient(135deg, rgba(15, 23, 42, 0.55), rgba(30, 58, 138, 0.45)),
+      url('{{ url_for("static", filename="images/a_propos/yves.jpg") }}');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .about-page .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-hero,
+  .about-card,
+  .about-stat,
+  .about-value,
+  .about-cta {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+  }
+
+  .about-hero {
+    padding: 1.2rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .about-hero h1 {
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.65rem, 2.8vw, 2.1rem);
+  }
+
+  .about-hero p {
+    margin: 0;
+    color: #64748b;
+    max-width: 760px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .about-card {
+    padding: 0.95rem;
+  }
+
+  .about-card h2,
+  .about-card h3 {
+    margin: 0 0 0.45rem;
+  }
+
+  .about-card p {
+    margin: 0;
+    color: #475569;
+    line-height: 1.55;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .about-stat {
+    padding: 0.85rem;
+    text-align: center;
+  }
+
+  .about-stat strong {
+    display: block;
+    font-size: 1.15rem;
+    color: #0f172a;
+    margin-bottom: 0.15rem;
+  }
+
+  .about-stat span {
+    font-size: 0.82rem;
+    color: #64748b;
+  }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .about-value {
+    padding: 0.9rem;
+  }
+
+  .about-value h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.98rem;
+  }
+
+  .about-value p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .about-cta {
+    padding: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .about-cta h2 {
+    margin: 0 0 0.2rem;
+    font-size: 1.1rem;
+  }
+
+  .about-cta p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  .about-cta-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 980px) {
+    .about-grid,
+    .about-values {
+      grid-template-columns: 1fr;
+    }
+
+    .about-stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="about-page">
+  <div class="container">
+    <header class="about-hero">
+      <h1>{{ _('À Propos de DORSEY') }}</h1>
+      <p>{{ _('Une boutique mode simple, fiable et orientée qualité.') }}</p>
+    </header>
+
+    <section class="about-values" aria-label="{{ _('Présentation') }}">
+      <article class="about-value">
+        <h3>{{ _('Qui sommes-nous ?') }}</h3>
+        <p>{{ _('DORSEY-SHOP sélectionne des articles tendance pour hommes, femmes et accessoires.') }}</p>
+      </article>
+      <article class="about-value">
+        <h3>{{ _('Notre promesse') }}</h3>
+        <p>{{ _("Des produits soignés, des prix clairs et une expérience d'achat fluide.") }}</p>
+      </article>
+      <article class="about-value">
+        <h3>{{ _('Notre objectif') }}</h3>
+        <p>{{ _('Vous proposer la mode utile et élégante, avec un service client réactif.') }}</p>
+      </article>
+    </section>
+
+    <section class="about-cta">
+      <div>
+        <h2>{{ _('Découvrir la boutique') }}</h2>
+        <p>{{ _('Parcourez nos collections ou contactez-nous directement.') }}</p>
+      </div>
+      <div class="about-cta-actions">
+        <a href="{{ url_for('products.list_products') }}" class="btn btn-primary">{{ _('Explorer le catalogue') }}</a>
+        <a href="{{ url_for('main.contact') }}" class="btn btn-outline">{{ _('Nous contacter') }}</a>
+      </div>
+    </section>
+  </div>
+</section>
+{% endblock %}

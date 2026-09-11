@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Inscription') }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .register-frame .frame-header .frame-title {
+    color: #ffffff !important;
+  }
+
+  .register-frame .frame-header .frame-subtitle {
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  .register-frame .form-row {
+    grid-template-columns: 0.85fr 1.75fr;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .register-frame .form-input {
+    width: 100%;
+    min-height: 42px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.96rem;
+    border-radius: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .register-frame .form-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-10">
+  <div class="register-frame">
+    <div class="frame-header">
+      <h2 class="frame-title"> {{ _('Inscription') }}</h2>
+      <p class="frame-subtitle">{{ _('Rejoignez DORSEY Boutique') }}</p>
+    </div>
+    
+    <form method="post" action="{{ url_for('auth.register_submit') }}" class="frame-form">
+      {{ form.csrf_token }}
+      
+      <div class="form-row">
+        <label class="form-label"> {{ _("Nom d'utilisateur") }}</label>
+        {{ form.username(class_='form-input', placeholder=t('Choisissez un nom unique')) }}
+      </div>
+      
+      <div class="form-row">
+        <label class="form-label"> {{ _('Adresse email') }}</label>
+        {{ form.email(class_='form-input', placeholder='votre@email.com') }}
+      </div>
+      
+      <div class="form-row">
+        <label class="form-label"> {{ _('Mot de passe') }}</label>
+        {{ form.password(class_='form-input', placeholder='••••••••') }}
+      </div>
+      
+      <div class="form-row">
+        <label class="form-label"> {{ _('Confirmation du mot de passe') }}</label>
+        {{ form.confirm_password(class_='form-input', placeholder='••••••••') }}
+      </div>
+      
+      <button type="submit" class="btn btn-primary w-full btn-lg">
+         {{ _('Créer mon compte') }}
+      </button>
+      
+      <div class="text-center mt-6">
+        <p class="text-gray-600">
+          {{ _('Déjà membre') }}
+          <a href="{{ url_for('auth.login') }}" class="text-blue-600 hover:text-blue-700 font-semibold">{{ _('Se connecter') }}</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

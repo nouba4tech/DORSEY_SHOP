@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Aide - DORSEY-SHOP') }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .help-page {
+    padding: 1.8rem 0 2.4rem;
+    background: radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.08), transparent 32%),
+                radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.08), transparent 32%),
+                linear-gradient(135deg, #f8fafc, #ecf1f7);
+  }
+
+  .help-hero {
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .help-hero h1 {
+    margin: 0 0 0.35rem;
+    font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+    color: #0b1224;
+    letter-spacing: -0.02em;
+  }
+
+  .help-hero p {
+    margin: 0 auto;
+    max-width: 640px;
+    color: #475569;
+    font-size: 0.98rem;
+  }
+
+  .help-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.85rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .help-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+    display: grid;
+    gap: 0.45rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .help-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+    border-color: #cbd5e1;
+  }
+
+  .help-card h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+  }
+
+  .help-card p {
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.45;
+    font-size: 0.92rem;
+  }
+
+  .help-link {
+    justify-self: flex-start;
+    font-weight: 700;
+    color: #2563eb;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .help-link:hover {
+    color: #1e40af;
+  }
+
+  .help-faq {
+    background: #0b1224;
+    border-radius: 14px;
+    border: 1px solid #1f2937;
+    padding: 1.05rem 1.1rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    margin-bottom: 1.2rem;
+  }
+
+  .help-faq h2 {
+    margin: 0 0 0.7rem;
+    font-size: 1.1rem;
+    color: #e2e8f0;
+  }
+
+  .help-faq-item + .help-faq-item {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #1f2937;
+  }
+
+  .help-faq-item h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    color: #f8fafc;
+  }
+
+  .help-faq-item p {
+    margin: 0;
+    color: #cbd5e1;
+  }
+
+  .help-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: #0f172a;
+    border-radius: 14px;
+    border: 1px solid #1f2937;
+    padding: 1.05rem 1.1rem;
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28);
+  }
+
+  .help-cta h2 {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+    color: #e5e7eb;
+  }
+
+  .help-cta p {
+    margin: 0;
+    color: #cbd5e1;
+  }
+
+  .help-cta-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 880px) {
+    .help-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="help-page">
+  <div class="container">
+    <header class="help-hero">
+      <h1>{{ _("Centre d'aide") }}</h1>
+      <p>{{ _('Trouvez rapidement des réponses sur vos achats.') }}</p>
+    </header>
+
+    <div class="help-grid">
+      <article class="help-card">
+        <h3>{{ _('Suivre une commande') }}</h3>
+        <p>{{ _("Consultez l'état de votre commande et son suivi en temps réel.") }}</p>
+        <a class="help-link" href="{{ url_for('main.track_order') }}">{{ _('Commande') }}</a>
+      </article>
+      <article class="help-card">
+        <h3>{{ _('Livraison') }}</h3>
+        <p>{{ _('Délais, zones desservies et frais de livraison expliqués clairement.') }}</p>
+      </article>
+      <article class="help-card">
+        <h3>{{ _('Retours & échanges') }}</h3>
+        <p>{{ _('Procédure simple si un article ne convient pas.') }}</p>
+      </article>
+      <article class="help-card">
+        <h3>{{ _('Paiement') }}</h3>
+        <p>{{ _('Carte en ligne ou paiement à la livraison selon la zone.') }}</p>
+      </article>
+      <article class="help-card">
+        <h3>{{ _('Tailles & produits') }}</h3>
+        <p>{{ _('Conseils rapides pour bien choisir vos tailles.') }}</p>
+      </article>
+      <article class="help-card">
+        <h3>{{ _('Compte client') }}</h3>
+        <p>{{ _('Gérez vos informations et consultez vos commandes.') }}</p>
+      </article>
+    </div>
+
+    <section class="help-faq" aria-label="{{ _('Questions fréquentes') }}">
+      <h2>{{ _('Questions fréquentes') }}</h2>
+      <div class="help-faq-item">
+        <h3>{{ _('Quels sont les délais de livraison ?') }}</h3>
+        <p>{{ _('La plupart des commandes sont livrées sous 24 à 72h selon la zone.') }}</p>
+      </div>
+      <div class="help-faq-item">
+        <h3>{{ _('Puis-je payer à la livraison ?') }}</h3>
+        <p>{{ _("Oui, lorsque l'option est disponible à l'étape de paiement.") }}</p>
+      </div>
+      <div class="help-faq-item">
+        <h3>{{ _('Comment suivre ma commande ?') }}</h3>
+        <p>{{ _('Rendez-vous sur la page Commande et saisissez votre numéro.') }}</p>
+      </div>
+    </section>
+
+    <section class="help-cta">
+      <div>
+        <h2>{{ _("Besoin d'aide supplémentaire ?") }}</h2>
+        <p>{{ _('Notre équipe répond rapidement via le formulaire de contact.') }}</p>
+      </div>
+      <div class="help-cta-actions">
+        <a href="{{ url_for('main.contact') }}" class="btn btn-primary">{{ _('Nous contacter') }}</a>
+        <a href="{{ url_for('products.list_products') }}" class="btn btn-outline">{{ _('Voir le catalogue') }}</a>
+      </div>
+    </section>
+  </div>
+</section>
+{% endblock %}

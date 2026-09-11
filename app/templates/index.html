@@ -1,0 +1,374 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('DORSEY-SHOP - Mode et Accessoires au Tchad') }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .quick-auth {
+        position: fixed;
+        right: 20px;
+        top: 32px;
+        z-index: 1200;
+    }
+
+    .quick-auth-toggle {
+        width: 78px;
+        height: 40px;
+        border: none;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #0f172a;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.2);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        cursor: pointer;
+    }
+
+    .quick-auth-toggle svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .quick-auth-menu {
+        position: absolute;
+        right: 0;
+        top: 46px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        box-shadow: 0 16px 35px rgba(15, 23, 42, 0.18);
+        padding: 0.35rem;
+        min-width: 170px;
+    }
+
+    .quick-auth-menu a {
+        display: block;
+        border-radius: 8px;
+        padding: 0.55rem 0.7rem;
+        color: #0f172a;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .quick-auth-menu a:hover {
+        background: #f1f5f9;
+        color: #1e40af;
+    }
+
+    .is-hidden {
+        display: none;
+    }
+
+    .hero {
+        background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(30, 58, 138, 0.6)),
+        url('{{ url_for("static", filename="images/back.jpg") }}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent 60%);
+        z-index: 1;
+    }
+
+    .hero .container {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 5rem;
+        font-weight: 900;
+        margin-bottom: 1.5rem;
+        color: white;
+        text-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+        letter-spacing: -2px;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+        color: #ffffff;
+        margin-bottom: 3.5rem;
+        max-width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        line-height: 1.6;
+        font-weight: 500;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-actions .btn {
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
+        font-weight: 800;
+        border-radius: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-actions .btn:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+        border: none !important;
+    }
+
+    .btn-contact {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white !important;
+    }
+
+    .btn-contact:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .suit-showcase {
+        padding: 80px 0 90px;
+        background: linear-gradient(135deg, rgba(248, 250, 252, 0.92), rgba(226, 232, 240, 0.7));
+        position: relative;
+        overflow: hidden;
+    }
+
+    .suit-showcase::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.08), transparent 40%),
+            radial-gradient(circle at 85% 70%, rgba(14, 165, 233, 0.12), transparent 45%);
+        pointer-events: none;
+    }
+
+    .suit-showcase .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .suit-header {
+        text-align: center;
+        margin-bottom: 2.2rem;
+    }
+
+    .suit-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(30, 58, 138, 0.12);
+        color: #1e3a8a;
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.65rem;
+    }
+
+    .suit-title {
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        margin-bottom: 0.6rem;
+        color: #0f172a;
+    }
+
+    .suit-subtitle {
+        max-width: 640px;
+        margin: 0 auto;
+        color: #475569;
+        font-size: 1rem;
+    }
+
+    .suit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.2rem;
+    }
+
+    .suit-card {
+        background: #ffffff;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .suit-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+    }
+
+    .suit-card img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        display: block;
+        background: #f1f5f9;
+    }
+
+
+    .suit-card-fallback {
+        width: 100%;
+        height: 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f1f5f9;
+        color: #94a3b8;
+        font-size: 2rem;
+    }
+
+    .suit-card figcaption {
+        padding: 0.85rem 1rem 1rem;
+        font-size: 0.92rem;
+        color: #475569;
+        font-weight: 600;
+    }
+
+    .suit-note {
+        margin-top: 1.4rem;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #64748b;
+    }
+
+    @media (max-width: 768px) {
+        .quick-auth {
+            right: 12px;
+            top: 76px;
+        }
+
+        .suit-card img {
+            height: 260px;
+        }
+
+        .suit-card-fallback {
+            height: 260px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="quick-auth" id="quick-auth">
+    <button type="button" class="quick-auth-toggle" id="quick-auth-toggle" aria-label="{{ _('Accès compte') }}" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21a8 8 0 0 0-16 0"></path>
+            <circle cx="12" cy="8" r="4"></circle>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width: 14px; height: 14px;">
+            <path d="M7 10l5 5 5-5H7z"></path>
+        </svg>
+    </button>
+    <div class="quick-auth-menu is-hidden" id="quick-auth-menu">
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('auth.profile') }}">{{ _('Mon profil') }}</a>
+        <a href="{{ url_for('auth.logout') }}">{{ _('Déconnexion') }}</a>
+        {% else %}
+        <a href="{{ url_for('auth.login') }}">{{ _('Connexion') }}</a>
+        <a href="{{ url_for('auth.register') }}">{{ _('Inscription') }}</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="animate-fade-in">
+            <h1 class="hero-title">DORSEY</h1>
+            <p class="hero-subtitle">
+                {{ _('La référence de la mode au Tchad.') }}
+                {{ _('Collections exclusives et style incomparable.') }}
+            </p>
+            <div class="hero-actions">
+                <a href="{{ url_for('products.list_products') }}" class="btn btn-primary">
+                    <span>🏷️</span> {{ _('Explorer le Catalogue') }}
+                </a>
+                <a href="{{ url_for('main.contact') }}" class="btn btn-contact">
+                    <span>📞</span> {{ _('Contactez-nous') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="suit-showcase" aria-labelledby="suit-showcase-title">
+    <div class="container">
+        <div class="suit-header">
+            <span class="suit-kicker">{{ showcase_category.name if showcase_category else t('Sélection') }}</span>
+            <h2 class="suit-title" id="suit-showcase-title">{{ _('Inspirations de la boutique') }}</h2>
+        </div>
+
+        <div class="suit-grid">
+            {% for product in showcase_products %}
+            <figure class="suit-card">
+                {% if product.main_image and ('.' in product.main_image) %}
+                <img src="{{ url_for('static', filename='images/products/' ~ product.main_image) }}"
+                    alt="{{ product.name }}" loading="lazy">
+                {% else %}
+                <div class="suit-card-fallback">{{ product.main_image or 'Image' }}</div>
+                {% endif %}
+                <figcaption>{{ product.name }}</figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        const wrapper = document.getElementById('quick-auth');
+        const btn = document.getElementById('quick-auth-toggle');
+        const menu = document.getElementById('quick-auth-menu');
+        if (!wrapper || !btn || !menu) return;
+
+        btn.addEventListener('click', function () {
+            const open = menu.classList.toggle('is-hidden') === false;
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!wrapper.contains(event.target)) {
+                menu.classList.add('is-hidden');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    })();
+</script>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Confirmation') }}{% endblock %}
+
+{% block content %}
+<div class="container py-10">
+    <div class="card">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+            <div>
+                <h1 class="text-2xl font-bold">{{ _('Commande confirmée') }}</h1>
+                <p class="text-gray-300 mt-1">{{ _('Merci pour votre achat. Votre commande a été enregistrée.') }}</p>
+            </div>
+            <div class="badge">{{ order.order_number }}</div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+            <div class="lg:col-span-2">
+                <h2 class="text-xl font-semibold">{{ _('Détails') }}</h2>
+                <div class="mt-4 space-y-2 text-gray-300">
+                    <div><span class="text-gray-400">{{ _('Statut') }}:</span> <span class="badge {{ order_status_badge(order.status) }}">{{ order_status_label(order.status) }}</span></div>
+                    <div><span class="text-gray-400">{{ _('Paiement') }}:</span> <span class="badge {{ payment_status_badge(order.payment_status) }}">{{ payment_status_label(order.payment_status) }}</span></div>
+                    <div><span class="text-gray-400">{{ _('Montant') }}:</span> <span class="font-semibold">{{ format_price(order.total_amount) }}</span></div>
+                </div>
+
+                <h2 class="text-xl font-semibold mt-6">{{ _('Livraison') }}</h2>
+                <div class="mt-2 text-gray-300">
+                    <div class="font-semibold">{{ order.shipping_full_name }}</div>
+                    <div>{{ order.shipping_address }}</div>
+                    <div>{{ order.shipping_postal_code }} {{ order.shipping_city }}</div>
+                    <div>{{ order.shipping_country }}</div>
+                    <div class="mt-2"><span class="text-gray-400">{{ _('Téléphone') }}:</span> {{ order.shipping_phone }}</div>
+                    {% if order.tracking_number or order.carrier %}
+                    <div class="mt-3">
+                        <div><span class="text-gray-400">{{ _('Transporteur') }}:</span> {{ order.carrier or '-' }}</div>
+                        <div><span class="text-gray-400">{{ _('Numéro de suivi') }}:</span> {{ order.tracking_number or '-' }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-semibold">{{ _('Suivi de commande') }}</h2>
+                <div class="order-timeline">
+                    {% for step in order_timeline(order) %}
+                    <div class="order-step{% if step.done %} done{% endif %}">
+                        <span class="order-step-dot"></span>
+                        <div>
+                            <div class="order-step-label">{{ step.label }}</div>
+                            {% if step.date %}
+                            <div class="order-step-date">{{ step.date.strftime('%d/%m/%Y %H:%M') }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <h2 class="text-xl font-semibold mt-5">{{ _('Récapitulatif') }}</h2>
+                <div class="mt-4 space-y-2">
+                    <div class="flex justify-between"><span class="text-gray-300">{{ _('Sous-total') }}</span><span class="font-semibold">{{ format_price(order.subtotal) }}</span></div>
+                    <div class="flex justify-between"><span class="text-gray-300">{{ _('Remise') }}</span><span class="font-semibold">- {{ format_price(order.discount_amount) }}</span></div>
+                    <div class="flex justify-between"><span class="text-gray-300">{{ _('TVA') }}</span><span class="font-semibold">{{ format_price(order.tax_amount) }}</span></div>
+                    <div class="flex justify-between"><span class="text-gray-300">{{ _('Livraison') }}</span><span class="font-semibold">{{ format_price(order.shipping_cost) }}</span></div>
+                    <div class="divider"></div>
+                    <div class="flex justify-between text-lg"><span class="font-bold">{{ _('Total') }}</span><span class="price">{{ format_price(order.total_amount) }}</span></div>
+                </div>
+                <div class="mt-6 flex gap-3" style="flex-wrap: wrap;">
+                    <a class="btn btn-secondary" href="{{ url_for('products.list_products') }}">{{ _('Continuer') }}</a>
+                    <a class="btn btn-secondary" href="{{ url_for('auth.order_invoice', order_number=order.order_number) }}">{{ _('Voir facture') }}</a>
+                    <a class="btn btn-primary" href="{{ url_for('main.track_order', order=order.order_number) }}">{{ _('Suivre ma commande') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

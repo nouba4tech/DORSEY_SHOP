@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Admin - Commandes') }}{% endblock %}
+
+{% block content %}
+<div class="container py-10">
+  <div class="section-title">
+    <h1 class="text-2xl font-bold">{{ _('Toutes les commandes') }}</h1>
+    <a class="link" href="{{ url_for('admin.dashboard') }}">← {{ _('Dashboard') }}</a>
+  </div>
+
+  <div class="card mt-4">
+    {% if orders %}
+      <div class="table mt-2">
+        <div class="table-row table-head">
+          <div>{{ _('N°') }}</div>
+          <div>{{ _('Client') }}</div>
+          <div>{{ _('Statut') }}</div>
+          <div>{{ _('Paiement') }}</div>
+          <div>{{ _('Total') }}</div>
+          <div>{{ _('Date') }}</div>
+          <div>{{ _('Action') }}</div>
+        </div>
+        {% for o in orders %}
+          <div class="table-row">
+            <div class="font-semibold">{{ o.order_number }}</div>
+            <div class="text-gray-300">{{ o.user.username if o.user else '-' }}</div>
+            <div class="badge badge-sm {{ order_status_badge(o.status) }}">{{ order_status_label(o.status) }}</div>
+            <div class="badge badge-sm {{ payment_status_badge(o.payment_status) }}">{{ payment_status_label(o.payment_status) }}</div>
+            <div class="font-semibold">{{ format_price(o.total_amount) }}</div>
+            <div class="text-gray-400">{{ o.created_at.strftime('%d/%m/%Y %H:%M') if o.created_at else '' }}</div>
+            <div><a class="link" href="{{ url_for('admin.order_detail', order_id=o.id) }}">{{ _('Gérer') }}</a></div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-gray-300">{{ _('Aucune commande.') }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
