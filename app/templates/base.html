@@ -7,7 +7,7 @@
     <title>{% block title %}DORSEY-SHOP{% endblock %}</title>
     <meta name="description" content="{{ _('DORSEY-SHOP - Mode et accessoires au Tchad') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo/Dorsey-Boutique.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20260212-header-pro">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=20260911-footer-v2">
     <script>
         // Check theme before page load to avoid flash
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -734,8 +734,11 @@
 
                 <div class="footer-col footer-col-stack">
                     <div class="footer-substack">
-                        <h3>{{ _('Livraison') }}</h3>
-                        <p class="footer-delivery-info">{{ shop_city }}, {{ shop_country }}</p>
+                        <h3>{{ _('Livraison en :') }}</h3>
+                        <div class="footer-selectbox footer-selectbox-static">
+                            <img src="{{ url_for('static', filename='images/flags/fr.svg') }}" alt="" class="footer-selectbox-flag">
+                            <span>{{ shop_city }}, {{ shop_country }}</span>
+                        </div>
                     </div>
                     <div class="footer-substack">
                         <h3>{{ _('Modes de paiement') }}</h3>
@@ -754,12 +757,16 @@
 
                 <div class="footer-col footer-col-stack" id="newsletter">
                     <div class="footer-substack">
-                        <h3>{{ _('Langue') }}</h3>
-                        <div class="footer-lang-list">
-                            {% for code, name in languages.items() %}
-                            <a href="{{ url_for('main.set_language', lang=code) }}"
-                                class="{{ 'active' if code == current_lang else '' }}">{{ lang_flags[code] }} {{ name }}</a>
-                            {% endfor %}
+                        <h3>{{ _('Langue :') }}</h3>
+                        <label for="footer-lang-select" class="sr-only">{{ _('Langue') }}</label>
+                        <div class="footer-selectbox">
+                            <span class="footer-selectbox-flag">{{ lang_flags[current_lang] }}</span>
+                            <select id="footer-lang-select" onchange="if(this.value) window.location.href=this.value;">
+                                {% for code, name in languages.items() %}
+                                <option value="{{ url_for('main.set_language', lang=code) }}" {% if code == current_lang %}selected{% endif %}>{{ name }}</option>
+                                {% endfor %}
+                            </select>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="footer-selectbox-chevron"><path d="m9 18 6-6-6-6"></path></svg>
                         </div>
                     </div>
                     <div class="footer-substack">
